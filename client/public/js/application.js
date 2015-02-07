@@ -1,7 +1,16 @@
-$(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+angular.module('soggyNachos', ['firebase'])
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-});
+.controller('MainCtrl', ['$scope', '$firebase', function($scope, $firebase){
+
+  // connect to firebase
+  var ref = new Firebase("https://amber-heat-3761.firebaseio.com/chat");
+  var fb = $firebase(ref);
+  // var syncObject = fb.$asArray();
+
+   $scope.messages = fb.$asArray();
+
+  // console.log('firebase sync', syncObject);
+
+  $scope.messages.$add({message: 'test'});
+
+}]);
