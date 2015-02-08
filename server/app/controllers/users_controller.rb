@@ -1,10 +1,10 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
 	def index
 		render json: User.first
 	end
 
 	def create
-		user = User.new(params[:user])
+		user = User.new(user_params)
 		if user.save
 			render json: user
 		else
@@ -22,5 +22,11 @@ class UserController < ApplicationController
 	end
 
 	def destroy
+	end
+
+	private
+
+	def user_params
+	  params.require(:user).permit(:name, :email, :password)
 	end
 end

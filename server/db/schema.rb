@@ -16,15 +16,15 @@ ActiveRecord::Schema.define(version: 20150208002610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "profiles", force: true do |t|
-    t.integer  "user_id"
+  create_table "profile_skills", force: true do |t|
+    t.integer  "profile_id"
+    t.integer  "skill_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "profiles_skills", force: true do |t|
-    t.integer  "profile_id"
-    t.integer  "skill_id"
+  create_table "profiles", force: true do |t|
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
