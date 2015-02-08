@@ -28,6 +28,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    bcrypt (3.1.9)
     builder (3.2.2)
     erubis (2.7.0)
     hike (1.2.3)
@@ -81,6 +82,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   pg
   rails (= 4.1.8)
   rails-api
