@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       end
     end
 
+    get '/login' => 'auth#login'
+
   # Example resource route with options:
   #   resources :products do
   #     member do
