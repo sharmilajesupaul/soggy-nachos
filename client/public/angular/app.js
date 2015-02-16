@@ -1,4 +1,12 @@
-angular.module('soggyNachos', ['firebase', 'authController', 'userFactory'])
+angular.module('soggyNachos', ['firebase',
+                               'ui.router',
+                               'authController',
+                               'userFactory',
+                               'userRoutes'])
+
+.run(['$location', function($location){
+    $location.path("/");
+}])
 
 .controller('MainCtrl', ['$scope', '$firebase', '$http', function($scope, $firebase, $http){
 
@@ -8,4 +16,4 @@ angular.module('soggyNachos', ['firebase', 'authController', 'userFactory'])
   // var syncObject = fb.$asArray();
 
  $scope.messages = fb.$asArray();
-}])
+}]);
