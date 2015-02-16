@@ -4,7 +4,7 @@ angular.module('userFactory', [])
     signup: function (user) {
       return $http.post('http://localhost:3000/users', user);
     },
-    login: function (user) {
+    login: function (user){
       return $http.post('http://localhost:3000/login', user);
     }
   };

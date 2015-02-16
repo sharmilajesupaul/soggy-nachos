@@ -8,5 +8,4 @@ angular.module('soggyNachos', ['firebase', 'authController', 'userFactory'])
   // var syncObject = fb.$asArray();
 
  $scope.messages = fb.$asArray();
-}]);
-
+}])
