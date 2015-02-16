@@ -18,7 +18,8 @@ Rails.application.routes.draw do
       end
     end
 
-    get '/login' => 'auth#login'
+    # get '/login' => 'auth#login'
+    post '/login' => 'auth#login'
 
   # Example resource route with options:
   #   resources :products do

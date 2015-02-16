@@ -1,13 +1,11 @@
 <div ng-controller="MainCtrl">
-	<div ng-controller="UserCtrl">
-		<form ng-submit="onSubmit()">
-			<input type='text' ng-model="userData.email">
-			<input type='text' ng-model="userData.password">
-			<input type='submit'>
-		</form>
-	</div>
-
   <div ng-controller="LoginCtrl">
+  	<form ng-submit="login()">
+		Email: <input type='text' ng-model="loginData.email"><br>
+		Password: <input type='password' ng-model="loginData.password"><br>
+		<input type='submit' value="Login"><br>
+	</form>
+
   	<form class="simple-form" ng-submit="createUser()">
 	    Name: <input type="text" ng-model="user.user.name" required/><br/>
 	    Email: <input type="email" ng-model="user.user.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/><br/>
