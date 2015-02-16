@@ -1,5 +1,6 @@
 angular.module('soggyNachos', ['firebase',
                                'ui.router',
+                               'ngStorage',
                                'authController',
                                'userFactory',
                                'userRoutes'])

@@ -3,7 +3,7 @@ angular.module('authController', [])
 
   $scope.userData = {};
   $scope.createUser = function () {
-    authFactory.signup($scope.user)
+    authFactory.signup($scope.userData)
     .success(function(data, status, headers, config) {
         console.log(data);
         $localStorage.user = $scope.userData;
