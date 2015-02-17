@@ -1,14 +1,52 @@
-<div ng-controller="LoginCtrl">
-  <form ng-submit="login()">
-  Email: <input type='text' ng-model="loginData.email"><br>
-  Password: <input type='password' ng-model="loginData.password"><br>
-  <input type='submit' value="Login"><br>
-</form>
+<div ng-controller="LoginCtrl" layout="column">
+   <md-content class="md-padding">
+    <form ng-submit="login()" name="loginForm">
+      <md-input-container>
+        <label>Email</label>
+        <input type="email" name="email" ng-model="loginData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
+        <div ng-messages="loginForm.email.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="pattern">Please enter a valid email.</div>
+        </div>
+      </md-input-container>
 
-  <form class="simple-form" ng-submit="createUser()">
-    Name: <input type="text" ng-model="userData.user.name" required/><br/>
-    Email: <input type="email" ng-model="userData.user.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/><br/>
-    Password: <input type="password" ng-model="userData.user.password" required/>
-    <input type="submit" value="Create User" />
-  </form>
+      <md-input-container>
+        <label>Password</label>
+        <input type='password' name="password" ng-model="loginData.password" required>
+        <div ng-messages="loginForm.password.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-button type="submit" class="md-raised md-primary">Login</md-button>
+    </form>
+  </md-content>
+
+
+  <md-content class="md-padding">
+    <form name="signupForm" class="simple-form" ng-submit="createUser()">
+      <md-input-container>
+      <label>Name</label>
+      <input type="text" name="name" ng-model="userData.user.name" required/><br/>
+        <div ng-messages="signupForm.name.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container>
+      <input type="email" name="email" ng-model="userData.user.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
+      <div ng-messages="signupForm.email.$error">
+        <div ng-message="required">This is required.</div>
+        <div ng-message="pattern">Please enter a valid email.</div>
+      </div>
+      </md-input-container>
+
+      <md-input-container>
+        <input type="password" name="password" ng-model="userData.user.password" required/>
+        <div ng-messages="signupForm.password.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-button type="submit" class="md-raised md-primary">Sign-up</md-button>
+    </form>
+  </md-content>
 </div>

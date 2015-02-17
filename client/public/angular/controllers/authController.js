@@ -22,5 +22,5 @@ angular.module('authController', [])
     .error(function(data, status, headers, config) {
         console.log(data);
     });
-  }
+  };
 }]);

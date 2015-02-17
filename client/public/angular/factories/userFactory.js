@@ -35,6 +35,7 @@ angular.module('userFactory', [])
 
         // if we choose to store token in local storage
         // delete $localStorage.token;
+
         $location.path("/landing");
       }
     }
