@@ -1,0 +1,32 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'uninstall', '-g', 'bower' ]
+2 info using npm@2.1.11
+3 info using node@v0.10.33
+4 verbose unbuild lib/node_modules/bower
+5 info preuninstall bower@1.3.12
+6 info uninstall bower@1.3.12
+7 verbose unbuild rmStuff bower@1.3.12 from /usr/local/lib/node_modules
+8 verbose gentlyRm verifying that /usr/local is managed by npm
+9 silly isManaged /usr/local/lib/node_modules is inside /usr/local
+10 silly gentlyRm /usr/local is managed by npm
+11 silly gentlyRm /usr/local/bin/bower is under /usr/local
+12 verbose gentlyRm vacuuming /usr/local/bin/bower up to /usr/local
+13 info postuninstall bower@1.3.12
+14 verbose gentlyRm vacuuming /usr/local/lib/node_modules/bower
+15 silly gentlyRm purging /usr/local/lib/node_modules/bower
+16 verbose stack Error: EACCES, unlink '/usr/local/lib/node_modules/bower/.editorconfig'
+17 verbose cwd /Users/sharmila/Desktop/Projects/soggy-nachos/client
+18 error Darwin 14.1.0
+19 error argv "node" "/usr/local/bin/npm" "uninstall" "-g" "bower"
+20 error node v0.10.33
+21 error npm  v2.1.11
+22 error path /usr/local/lib/node_modules/bower/.editorconfig
+23 error code EACCES
+24 error errno 3
+25 error Error: EACCES, unlink '/usr/local/lib/node_modules/bower/.editorconfig'
+25 error  { [Error: EACCES, unlink '/usr/local/lib/node_modules/bower/.editorconfig']
+25 error   errno: 3,
+25 error   code: 'EACCES',
+25 error   path: '/usr/local/lib/node_modules/bower/.editorconfig' }
+26 error Please try running this command again as root/Administrator.
+27 verbose exit [ 3, true ]
