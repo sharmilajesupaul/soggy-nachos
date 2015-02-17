@@ -1,52 +1,77 @@
 <div ng-controller="LoginCtrl" layout="column">
-   <md-content class="md-padding">
-    <form ng-submit="login()" name="loginForm">
-      <md-input-container>
-        <label>Email</label>
-        <input type="email" name="email" ng-model="loginData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
-        <div ng-messages="loginForm.email.$error">
+
+  <md-tabs class="md-accent" md-selected="data.selectedIndex">
+    <md-tab id="tab1" aria-controls="tab1-content">
+      Login
+    </md-tab>
+
+    <md-tab id="tab2" aria-controls="tab2-content">
+      Signup
+    </md-tab>
+  </md-tabs>
+
+<md-content class="md-padding">
+  <ng-switch on="data.selectedIndex" class="tabpanel-container">
+    <div role="tabpanel"
+         id="tab1-content"
+         aria-labelledby="tab1"
+         ng-switch-when="0"
+         md-swipe-left="nextTab()"
+         md-swipe-right="previousTab()" >
+      <form ng-submit="login()" name="loginForm">
+        <md-input-container>
+          <label>Email</label>
+          <input type="email" name="email" ng-model="loginData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
+          <div ng-messages="loginForm.email.$error">
+            <div ng-message="required">This is required.</div>
+            <div ng-message="pattern">Please enter a valid email.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Password</label>
+          <input type='password' name="password" ng-model="loginData.password" required>
+          <div ng-messages="loginForm.password.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-button type="submit" class="md-raised md-primary">Login</md-button>
+      </form>
+    </div>
+
+    <div role="tabpanel"
+         id="tab2-content"
+         aria-labelledby="tab3"
+         ng-switch-when="1"
+         md-swipe-left="nextTab()"
+         md-swipe-right="previousTab()" >
+
+      <form name="signupForm" class="simple-form" ng-submit="createUser()">
+        <md-input-container>
+        <label>Name</label>
+        <input type="text" name="name" ng-model="userData.user.name" required/><br/>
+          <div ng-messages="signupForm.name.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container>
+        <input type="email" name="email" ng-model="userData.user.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
+        <div ng-messages="signupForm.email.$error">
           <div ng-message="required">This is required.</div>
           <div ng-message="pattern">Please enter a valid email.</div>
         </div>
-      </md-input-container>
+        </md-input-container>
 
-      <md-input-container>
-        <label>Password</label>
-        <input type='password' name="password" ng-model="loginData.password" required>
-        <div ng-messages="loginForm.password.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-button type="submit" class="md-raised md-primary">Login</md-button>
-    </form>
-  </md-content>
-
-
-  <md-content class="md-padding">
-    <form name="signupForm" class="simple-form" ng-submit="createUser()">
-      <md-input-container>
-      <label>Name</label>
-      <input type="text" name="name" ng-model="userData.user.name" required/><br/>
-        <div ng-messages="signupForm.name.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-
-      <md-input-container>
-      <input type="email" name="email" ng-model="userData.user.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
-      <div ng-messages="signupForm.email.$error">
-        <div ng-message="required">This is required.</div>
-        <div ng-message="pattern">Please enter a valid email.</div>
-      </div>
-      </md-input-container>
-
-      <md-input-container>
-        <input type="password" name="password" ng-model="userData.user.password" required/>
-        <div ng-messages="signupForm.password.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-button type="submit" class="md-raised md-primary">Sign-up</md-button>
-    </form>
+        <md-input-container>
+          <input type="password" name="password" ng-model="userData.user.password" required/>
+          <div ng-messages="signupForm.password.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-button type="submit" class="md-raised md-primary">Sign-up</md-button>
+      </form>
+    </div>
+    </ng-switch>
   </md-content>
 </div>
