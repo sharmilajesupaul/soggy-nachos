@@ -1,0 +1,72 @@
+html, body { 
+  background-color: #252120;
+}
+
+md-input-container label:not(.md-no-float), md-input-container .md-placeholder {
+  color: #B48375;
+}
+
+md-input-container.md-input-focused .md-input, md-input-container .md-input {
+  color: #CEC9B1;
+}
+
+md-input-container.md-default-theme .md-input {
+  color: #EAE5D1;
+}
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label {
+  color: #EAE5D1;
+}
+
+md-tab md-tab-label {
+  color: #E8E2CB;
+}
+
+.checkbox-button {
+  display: inline-block;
+  margin: 5% auto;
+}
+
+md-checkbox .md-container:after{
+   display:none;
+}
+
+/* hide the checkbox itself - the label will be styled */
+md-checkbox.md-default-theme .md-icon     {
+  float: right;
+  display:none;
+}
+
+/* default styling for our labels */
+.checkbox-button label     {
+  padding:10px;
+  color:#FFF;
+  background:#EEE;
+  border-radius:5px;
+  transition:0.3s ease all;
+}
+
+/* if the label is checked */
+.checkbox-button.ng-valid.md-default-theme.md-checked label {
+  background:#6AB074;
+  animation:flashAvailable 0.5s ease;
+}
+
+/* if the label is not checked */
+.checkbox-button.ng-valid.md-default-theme label {
+  background:#f2dede;
+  cursor:copy;
+  animation:flashBooked 0.5s ease;
+}
+
+/* animation for the time slot to flash red */
+@keyframes flashBooked {
+  0%, 100%  { background:#f2dede; transform:scale(1); }
+  50%       { background:#F99090; transform:scale(1.5); }
+}
+
+/* animation for the time slot to flash green */
+@keyframes flashAvailable {
+  0%, 100%  { background:#6AB074; transform:scale(1); }
+  50%       { background:rgb(119, 218, 78); transform:scale(1.5); }
+}

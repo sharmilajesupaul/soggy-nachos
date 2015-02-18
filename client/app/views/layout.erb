@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background: #3B3736;">
 <head>
 
   <!--
@@ -8,12 +8,12 @@
     See: http://necolas.github.com/normalize.css/
   -->
   <link rel="stylesheet" href="/css/normalize.css">
+  <!-- application.css is where you put your styles -->
+  <link rel="stylesheet" href="/css/application.css">
 
   <!-- Angular Material CSS -->
   <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">
 
-  <!-- application.css is where you put your styles -->
-  <link rel="stylesheet" href="/css/application.css">
 
   <!-- jQuery -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -52,10 +52,13 @@
   <script src="/angular/controllers/authController.js"></script>
   <script src="/angular/factories/userFactory.js"></script>
   <script src="/angular/routes/userRoutes.js"></script>
+  <script src="/angular/config/themeConfig.js"></script>
 
   <title>Soggy Nachos</title>
 </head>
 <body ng-app="soggyNachos">
-  <%= yield %>
+  <div ui-view>
+    <%= yield %>
+  </div>
 </body>
 </html>

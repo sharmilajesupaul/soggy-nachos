@@ -1,11 +1,13 @@
-<div ng-controller="LoginCtrl" layout="row" layout-align="center center" layout-margin style="margin: 10%;">
+
+<div ng-controller="LoginCtrl" layout="column" layout-fill>
   <div flex>
     <md-content class="md-padding">
-      <md-tabs md-stretch-tabs="always" class="md-accent" md-selected="tabData.selectedIndex">
-        <md-tab id="tab1" aria-controls="tab1-content">
+      <md-card>
+      <md-tabs md-stretch-tabs="always" class="md-background md-hue-2" md-selected="tabData.selectedIndex">
+        <md-tab id="tab1" aria-controls="tab1-content" class="md-accent">
           Login
         </md-tab>
-        <md-tab id="tab2" aria-controls="tab2-content">
+        <md-tab id="tab2" aria-controls="tab2-content" class="md-accent">
           Signup
         </md-tab>
       </md-tabs>
@@ -17,7 +19,7 @@
              ng-switch-when="0"
              md-swipe-left="nextTab()"
              md-swipe-right="previousTab()" >
-          <form ng-submit="login()" name="loginForm">
+          <form ng-submit="login()" name="loginForm" class="auth-form">
             <md-input-container>
               <label>Email</label>
               <input type="email" name="email" ng-model="loginData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
@@ -57,7 +59,7 @@
       </md-tabs>
 
       <ng-switch on="tabData.signupTabIndex" class="tabpanel-container">
-        <form name="signupForm" class="simple-form" ng-submit="createUser()">
+        <form name="signupForm" class="auth-form" ng-submit="createUser()">
         <div role="tabpanel"
              id="signupTab1-content"
              aria-labelledby="signupTab1"
@@ -96,35 +98,40 @@
                ng-switch-when="1"
                md-swipe-left="nextInnerTab()"
                md-swipe-right="previousInnerTab()">
-              <p><input type="checkbox" id="ruby">
-              <label for="ruby">Ruby</label></p>
+            <!-- <h2 style="color:white;">   {{data}}</h2> -->
 
+            <md-checkbox class="checkbox-button" ng-model="data.cb1" aria-label="SQL">
+              <label>SQL</label>
+            </md-checkbox>
 
-              <p><input type="checkbox" id="javascript">
-              <label for="javascript">Javascript</label></p>
-
-
-              <p><input type="checkbox" id="python">
-              <label for="python">Python</label></p>
-
-
-              <p><input type="checkbox" id="scala">
-              <label for="scala">Scala</label></p>
-
-              <p><input type="checkbox" id="java">
-              <label for="java">Java</label></p>
+            <md-checkbox class="checkbox-button" ng-model="data.cb2" aria-label="SQL">
+              <label>SQL</label>
+            </md-checkbox>
+            <md-checkbox class="checkbox-button" ng-model="data.cb3" aria-label="SQL">
+              <label>SQL</label>
+            </md-checkbox>
+            <md-checkbox class="checkbox-button" ng-model="data.cb4" aria-label="SQL">
+              <label>SQL</label>
+            </md-checkbox>
+            <md-checkbox class="checkbox-button" ng-model="data.cb5" aria-label="SQL">
+              <label>SQL</label>
+            </md-checkbox>
           </div>
 
-            <div role="tabpanel"
+          <div role="tabpanel"
                id="signupTab3-content"
                aria-labelledby="signupTab3"
                ng-switch-when="2"
                md-swipe-left="nextInnerTab()"
                md-swipe-right="previousInnerTab()">
-                <input type="text" name="phone" placeholder="Phone" />
-        <textarea name="address" placeholder="Address"></textarea>
-
-
+            <md-input-container>
+              <label>Phone</label>
+              <input type="text" name="phone" placeholder="Phone" />
+            </md-input-container>
+            <md-input-container>
+              <label>Address</label>
+              <input type="textarea" name="address" placeholder="Address">
+            </md-input-container>
           </div>
             <md-button type="submit" class="md-raised md-primary">Sign-up</md-button>
           </form>
@@ -134,6 +141,7 @@
 
       </div>
       </ng-switch>
+    </md-card>
     </md-content>
   </div>
 </div>
