@@ -1,8 +1,41 @@
 angular.module('authController', [])
 .controller('LoginCtrl', ['$scope', '$http', '$localStorage', 'authFactory', function($scope, $http, $localStorage, authFactory){
-    $scope.data = {};
+    $scope.userData = {};
+    $scope.skillData = {};
+    $scope.loginData = {};
 
-    console.log($scope.data);
+    var profileData = {user: $scope.userData, skills: $scope.skillData};
+
+    $scope.signup = function () {
+      authFactory.signup(profileData)
+      .success(signupSuccessCallback)
+      .error(signupErrorCallback);
+    };
+
+    function signupSuccessCallback (data, status, headers, config) {
+      $localStorage.user = data.user;
+      $localStorage.token = data.token;
+    }
+
+    function signupErrorCallback (data, status, headers, config) {
+      console.log('error:', status);
+    }
+
+
+    $scope.login = function(){
+      authFactory.login($scope.loginData)
+      .success(loginSuccessCallback)
+      .error(loginErrorCallback);
+    };
+
+    function loginSuccessCallback (data, status, headers, config){
+      console.log(data);
+    }
+    function loginErrorCallback (data, status, headers, config) {
+      console.log('error:', status);
+    }
+
+    // Landing Page Tab Controls
     $scope.tabData = {
       selectedIndex : 0,
       signupTabIndex : 0
@@ -22,26 +55,4 @@ angular.module('authController', [])
       $scope.tabData.signupTabIndex = Math.max($scope.tabData.signupTabIndex - 1, 0);
     };
 
-  $scope.userData = {};
-  $scope.createUser = function () {
-    authFactory.signup($scope.userData)
-    .success(function(data, status, headers, config) {
-        console.log(data);
-        $localStorage.user = $scope.userData;
-    })
-    .error(function(data, status, headers, config) {
-        console.log(data);
-    });
-  };
-
-  $scope.loginData = {};
-  $scope.login = function(){
-    authFactory.login($scope.loginData)
-    .success(function(data, status, headers, config) {
-        console.log(data);
-    })
-    .error(function(data, status, headers, config) {
-        console.log(data);
-    });
-  };
 }]);
