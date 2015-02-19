@@ -1,8 +1,7 @@
-angular.module('authController', [])
+angular.module('authController', ['ngStorage'])
 .controller('LoginCtrl', ['$scope', '$http', '$localStorage', 'authFactory', function($scope, $http, $localStorage, authFactory){
     $scope.data = {};
 
-    console.log($scope.data);
     $scope.tabData = {
       selectedIndex : 0,
       signupTabIndex : 0
@@ -44,4 +43,16 @@ angular.module('authController', [])
         console.log(data);
     });
   };
+}])
+
+.controller('TestCtrl', ['$scope', '$http', '$localStorage', 'authFactory', function($scope, $http, $localStorage, authFactory){
+
+  $http.post('http://localhost:3000/users', {user: {name: true, email: false, password: true}, skills: {python:true}})
+  .success(function(data, status, headers, config) {
+      console.log(data);
+  })
+  .error(function(data, status, headers, config) {
+      console.log('fail');
+  });
+
 }]);

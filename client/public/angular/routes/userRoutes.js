@@ -8,4 +8,10 @@ angular.module('userRoutes', [])
     controller    : 'LoginCtrl'
   });
 
+  .state('test', {
+    url           : "/test",
+    templateUrl   : "angular/templates/landing.html",
+    controller    : 'TestCtrl'
+  });
+
 }]);

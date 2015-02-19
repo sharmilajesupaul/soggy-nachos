@@ -6,12 +6,17 @@ class UsersController < ApplicationController
 
 	def create
 		user = User.new(user_params)
-		
-		params[:skills].each do |skill|
-			user.skills << Skill.find_or_create_by(name: skill.name)
+
+		skill_params.each do |skill, value|
+			added_skill = Skill.find_or_create_by(name: skill)
+			if value == true
+				user.skills << added_skill 
+				added_skill.increase_frequency
+			end
 		end
-		
+
 		if user.save
+			render json: {user: user.id, token: create_token(user)}
 			session[:user_id] = user.id
 		else
 			session[:errors] = "invalid user data"
@@ -20,7 +25,7 @@ class UsersController < ApplicationController
 
 	def edit
 		user = User.find(params[:id])
-		user.update_attributes(params[:user])
+		# user.update_attributes(params[:user])
 	end
 
 	def show
