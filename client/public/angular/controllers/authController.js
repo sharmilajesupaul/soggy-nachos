@@ -41,17 +41,18 @@ angular.module('authController', [])
       signupTabIndex : 0
     };
 
-    $scope.nextTab = function() {
-      $scope.tabData.selectedIndex = Math.min($scope.tabData.selectedIndex + 1, 2) ;
+    $scope.nextTab = function(name) {
+      if (name === "inner"){
+        $scope.tabData.signupTabIndex = Math.min($scope.tabData.signupTabIndex + 1, 2) ;
+      }else {
+        $scope.tabData.selectedIndex = Math.min($scope.tabData.selectedIndex + 1, 2) ;
+      }
     };
-    $scope.previousTab = function() {
-      $scope.tabData.selectedIndex = Math.max($scope.tabData.selectedIndex - 1, 0);
-    };
-
-    $scope.nextInnerTab = function() {
-      $scope.tabData.signupTabIndex = Math.min($scope.tabData.signupTabIndex + 1, 2) ;
-    };
-    $scope.previousInnerTab = function() {
-      $scope.tabData.signupTabIndex = Math.max($scope.tabData.signupTabIndex - 1, 0);
+    $scope.previousTab = function(name) {
+      if(name === "inner"){
+        $scope.tabData.signupTabIndex = Math.max($scope.tabData.signupTabIndex - 1, 0);
+      }else{
+        $scope.tabData.selectedIndex = Math.max($scope.tabData.selectedIndex - 1, 0);
+      }
     };
 }]);

@@ -74,8 +74,8 @@
                      id="signupTab1-content"
                      aria-labelledby="signupTab1"
                      ng-switch-when="0"
-                     md-swipe-left="nextInnerTab()"
-                     md-swipe-right="previousInnerTab()" >
+                     md-swipe-left="nextTab('inner')"
+                     md-swipe-right="previousTab('inner')" >
 
                     <md-input-container>
                       <label>Name</label>
@@ -109,8 +109,8 @@
                      id="signupTab2-content"
                      aria-labelledby="signupTab2"
                      ng-switch-when="1"
-                     md-swipe-left="nextInnerTab()"
-                     md-swipe-right="previousInnerTab()">
+                     md-swipe-left="nextTab('inner')"
+                     md-swipe-right="previousTab('inner')">
 
                      <!-- <h2>{{profileData}}</h2> -->
 
@@ -143,8 +143,8 @@
                      id="signupTab3-content"
                      aria-labelledby="signupTab3"
                      ng-switch-when="2"
-                     md-swipe-left="nextInnerTab()"
-                     md-swipe-right="previousInnerTab()">
+                     md-swipe-left="nextTab('inner')"
+                     md-swipe-right="previousTab('inner')">
                   <md-input-container>
                     <label>Phone</label>
                     <input type="text" name="phone" placeholder="Phone" />
