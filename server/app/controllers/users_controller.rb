@@ -6,6 +6,11 @@ class UsersController < ApplicationController
 
 	def create
 		user = User.new(user_params)
+		
+		params[:skills].each do |skill|
+			user.skills << Skill.find_or_create_by(name: skill.name)
+		end
+		
 		if user.save
 			session[:user_id] = user.id
 		else
@@ -54,4 +59,9 @@ class UsersController < ApplicationController
 	def user_params
 	  params.require(:user).permit(:name, :email, :password)
 	end
+
+	def skill_params
+	  params.require(:skills)
+	end
+
 end
