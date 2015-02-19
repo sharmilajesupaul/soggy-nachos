@@ -1,4 +1,4 @@
-html, body { 
+.landing-page {
   background-color: #252120;
 }
 
@@ -14,30 +14,31 @@ md-input-container.md-default-theme .md-input {
   color: #EAE5D1;
 }
 
-md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label {
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value {
   color: #EAE5D1;
+}
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label {
+color: #EAE5D1;
 }
 
 md-tab md-tab-label {
   color: #E8E2CB;
 }
 
+/* Get rid of angular material checkbox icon*/
+/* Hide the checkbox itself - the label will be styled */
+md-checkbox div.md-container {
+  display:none;
+}
+
+/* Checkbox label alignment */
 .checkbox-button {
   display: inline-block;
   margin: 5% auto;
 }
 
-md-checkbox .md-container:after{
-   display:none;
-}
-
-/* hide the checkbox itself - the label will be styled */
-md-checkbox.md-default-theme .md-icon     {
-  float: right;
-  display:none;
-}
-
-/* default styling for our labels */
+/* default styling for labels */
 .checkbox-button label     {
   padding:10px;
   color:#FFF;

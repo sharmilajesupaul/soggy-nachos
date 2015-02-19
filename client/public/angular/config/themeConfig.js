@@ -1,4 +1,4 @@
-angular.module('themeConfig', [])
+ angular.module('themeConfig', [])
 .config(['$mdThemingProvider',function($mdThemingProvider) {
       // Theme Hex Values:
       // primary - E5DFC5
@@ -92,21 +92,8 @@ angular.module('themeConfig', [])
        '900', 'A100', 'A200']
       });
       $mdThemingProvider.theme('default')
-      .primaryPalette('soggyPrimary', {
-        'default': '400'
-      })
-
-      // If you specify less than all of the keys, it will inherit from the
-      // default shades
-      .accentPalette('soggyAccent', {
-        'default': '500' // use shade 200 for default, and keep all other shades the same
-      })
-
-      .warnPalette('soggyWarn', {
-        'default': '500' // use shade 200 for default, and keep all other shades the same
-      })
-
-      .backgroundPalette('soggyBackground', {
-        'default': '600', // use shade 200 for default, and keep all other shades the same
-      });
+      .primaryPalette('soggyPrimary', { 'default': '400' })
+      .accentPalette('soggyAccent', { 'default': '500' })
+      .warnPalette('soggyWarn', { 'default': '500' })
+      .backgroundPalette('soggyBackground', { 'default': '600', 'hue-1': '700', 'hue-2': '800', 'hue-3': '900' });
 }]);

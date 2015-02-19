@@ -1,6 +1,7 @@
 angular.module('authController', [])
 .controller('LoginCtrl', ['$scope', '$http', '$localStorage', 'authFactory', function($scope, $http, $localStorage, authFactory){
     $scope.data = {};
+
     console.log($scope.data);
     $scope.tabData = {
       selectedIndex : 0,

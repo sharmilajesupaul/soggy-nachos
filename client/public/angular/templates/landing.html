@@ -1,147 +1,163 @@
+<div ng-controller="LoginCtrl" style="background: #252120;" layout-fill>
+    <md-toolbar class="md-tall md-accent md-hue-3">
+      <span flex></span>
+      <h2 class="md-toolbar-tools md-toolbar-tools-bottom">
+        <span class="md-flex">Soggy Nachos</span>
+      </h2>
+    </md-toolbar>
 
-<div ng-controller="LoginCtrl" layout="column" layout-fill>
-  <div flex>
-    <md-content class="md-padding">
-      <md-card>
-      <md-tabs md-stretch-tabs="always" class="md-background md-hue-2" md-selected="tabData.selectedIndex">
-        <md-tab id="tab1" aria-controls="tab1-content" class="md-accent">
-          Login
-        </md-tab>
-        <md-tab id="tab2" aria-controls="tab2-content" class="md-accent">
-          Signup
-        </md-tab>
-      </md-tabs>
+  <div layout="row" class="landing-page" layout-fill>
+    <div flex layout-padding layout="column" layout-align="center center">
+      <md-content class="md-padding" layout-fill>
+        <md-tabs md-stretch-tabs="always" class="md-background md-hue-1" md-selected="tabData.selectedIndex">
+          <md-tab id="tab1" aria-controls="tab1-content" class="md-warn">
+            Login
+          </md-tab>
+          <md-tab id="tab2" aria-controls="tab2-content" class="md-warn">
+            Signup
+          </md-tab>
+        </md-tabs>
 
-      <ng-switch on="tabData.selectedIndex" class="tabpanel-container">
-        <div role="tabpanel"
-             id="tab1-content"
-             aria-labelledby="tab1"
-             ng-switch-when="0"
-             md-swipe-left="nextTab()"
-             md-swipe-right="previousTab()" >
-          <form ng-submit="login()" name="loginForm" class="auth-form">
-            <md-input-container>
-              <label>Email</label>
-              <input type="email" name="email" ng-model="loginData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
-              <div ng-messages="loginForm.email.$error">
-                <div ng-message="required">This is required.</div>
-                <div ng-message="pattern">Please enter a valid email.</div>
-              </div>
-            </md-input-container>
+        <ng-switch on="tabData.selectedIndex" class="tabpanel-container">
+          <div role="tabpanel"
+               id="tab1-content"
+               aria-labelledby="tab1"
+               ng-switch-when="0"
+               md-swipe-left="nextTab()"
+               md-swipe-right="previousTab()" >
+            <form ng-submit="login()" name="loginForm" class="auth-form">
+              <md-input-container>
+                <label>Email</label>
+                <input type="email" name="email" ng-model="loginData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
+                <div ng-messages="loginForm.email.$error">
+                  <div ng-message="required">This is required.</div>
+                  <div ng-message="pattern">Please enter a valid email.</div>
+                </div>
+              </md-input-container>
 
-            <md-input-container>
-              <label>Password</label>
-              <input type='password' name="password" ng-model="loginData.password" required>
-              <div ng-messages="loginForm.password.$error">
-                <div ng-message="required">This is required.</div>
-              </div>
-            </md-input-container>
-            <md-button type="submit" class="md-raised md-primary">Login</md-button>
-          </form>
-        </div>
-
-      <div role="tabpanel"
-           id="tab2-content"
-           aria-labelledby="tab2"
-           ng-switch-when="1"
-           md-swipe-left="nextTab()"
-           md-swipe-right="previousTab()" >
-      <md-tabs md-stretch-tabs="always" class="md" md-selected="tabData.signupTabIndex">
-        <md-tab id="signupTab1" aria-controls="signupTab1-content">
-          Basic
-        </md-tab>
-        <md-tab id="signupTab2" aria-controls="signupTab2-content">
-          Skills
-        </md-tab>
-        <md-tab id="signupTab3" aria-controls="signupTab3-content">
-          Personal Info
-        </md-tab>
-      </md-tabs>
-
-      <ng-switch on="tabData.signupTabIndex" class="tabpanel-container">
-        <form name="signupForm" class="auth-form" ng-submit="createUser()">
-        <div role="tabpanel"
-             id="signupTab1-content"
-             aria-labelledby="signupTab1"
-             ng-switch-when="0"
-             md-swipe-left="nextInnerTab()"
-             md-swipe-right="previousInnerTab()" >
-            <md-input-container>
-            <label>Name</label>
-            <input type="text" name="name" ng-model="userData.user.name" required/><br/>
-              <div ng-messages="signupForm.name.$error">
-                <div ng-message="required">This is required.</div>
-              </div>
-            </md-input-container>
-
-            <md-input-container>
-            <label>Email</label>
-            <input type="email" name="email" ng-model="userData.user.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
-            <div ng-messages="signupForm.email.$error">
-              <div ng-message="required">This is required.</div>
-              <div ng-message="pattern">Please enter a valid email.</div>
-            </div>
-            </md-input-container>
-
-            <md-input-container>
-            <label>Password</label>
-              <input type="password" name="password" ng-model="userData.user.password" required/>
-              <div ng-messages="signupForm.password.$error">
-                <div ng-message="required">This is required.</div>
-              </div>
-            </md-input-container>
-        </div>
+              <md-input-container>
+                <label>Password</label>
+                <input type='password' name="password" ng-model="loginData.password" pattern=".{6,}" required>
+                <div ng-messages="loginForm.password.$error">
+                  <div ng-message="required">This is required.</div>
+                  <div ng-message="pattern">Password too short.</div>
+                </div>
+              </md-input-container>
+              <md-button type="submit" class="md-raised md-primary">Login</md-button>
+            </form>
+          </div>
 
           <div role="tabpanel"
-               id="signupTab2-content"
-               aria-labelledby="signupTab2"
+               id="tab2-content"
+               aria-labelledby="tab2"
                ng-switch-when="1"
-               md-swipe-left="nextInnerTab()"
-               md-swipe-right="previousInnerTab()">
-            <!-- <h2 style="color:white;">   {{data}}</h2> -->
+               md-swipe-left="nextTab()"
+               md-swipe-right="previousTab()" >
 
-            <md-checkbox class="checkbox-button" ng-model="data.cb1" aria-label="SQL">
-              <label>SQL</label>
-            </md-checkbox>
+            <md-tabs md-stretch-tabs="always" class="md" md-selected="tabData.signupTabIndex">
+              <md-tab id="signupTab1" aria-controls="signupTab1-content">
+                Basic
+              </md-tab>
+              <md-tab id="signupTab2" aria-controls="signupTab2-content">
+                Skills
+              </md-tab>
+              <md-tab id="signupTab3" aria-controls="signupTab3-content">
+                Personal Info
+              </md-tab>
+            </md-tabs>
 
-            <md-checkbox class="checkbox-button" ng-model="data.cb2" aria-label="SQL">
-              <label>SQL</label>
-            </md-checkbox>
-            <md-checkbox class="checkbox-button" ng-model="data.cb3" aria-label="SQL">
-              <label>SQL</label>
-            </md-checkbox>
-            <md-checkbox class="checkbox-button" ng-model="data.cb4" aria-label="SQL">
-              <label>SQL</label>
-            </md-checkbox>
-            <md-checkbox class="checkbox-button" ng-model="data.cb5" aria-label="SQL">
-              <label>SQL</label>
-            </md-checkbox>
+            <ng-switch on="tabData.signupTabIndex" class="tabpanel-container">
+              <form name="signupForm" class="auth-form" ng-submit="createUser()">
+                <div role="tabpanel"
+                     id="signupTab1-content"
+                     aria-labelledby="signupTab1"
+                     ng-switch-when="0"
+                     md-swipe-left="nextInnerTab()"
+                     md-swipe-right="previousInnerTab()" >
+
+                    <md-input-container>
+                      <label>Name</label>
+                      <input type="text" name="name" pattern=".{3,}" ng-model="userData.user.name" required/><br/>
+                      <div ng-messages="signupForm.name.$error">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="pattern">Name too short.</div>
+                      </div>
+                    </md-input-container>
+
+                    <md-input-container>
+                      <label>Email</label>
+                      <input type="email" name="email" ng-model="userData.user.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
+                      <div ng-messages="signupForm.email.$error">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="pattern">Please enter a valid email.</div>
+                      </div>
+                    </md-input-container>
+
+                    <md-input-container>
+                      <label>Password</label>
+                      <input type="password" pattern=".{6,}" name="password" ng-model="userData.user.password" required/>
+                      <div ng-messages="signupForm.password.$error">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="pattern">Password too short.</div>
+                      </div>
+                    </md-input-container>
+                </div>
+
+                <div role="tabpanel"
+                     id="signupTab2-content"
+                     aria-labelledby="signupTab2"
+                     ng-switch-when="1"
+                     md-swipe-left="nextInnerTab()"
+                     md-swipe-right="previousInnerTab()">
+
+                  <md-checkbox class="checkbox-button" ng-model="data.cb1">
+                    <label>SQL</label>
+                  </md-checkbox>
+
+                  <md-checkbox class="checkbox-button" ng-model="data.cb2">
+                    <label>Java</label>
+                  </md-checkbox>
+
+                  <md-checkbox class="checkbox-button" ng-model="data.cb3">
+                    <label>Ruby</label>
+                  </md-checkbox>
+
+                  <md-checkbox class="checkbox-button" ng-model="data.cb4">
+                    <label>jQuery</label>
+                  </md-checkbox>
+
+                  <md-checkbox class="checkbox-button" ng-model="data.cb5">
+                    <label>AngularJS</label>
+                  </md-checkbox>
+
+                  <md-checkbox class="checkbox-button" ng-model="data.cb6">
+                    <label>ReactJS</label>
+                  </md-checkbox>
+                </div>
+
+                <div role="tabpanel"
+                     id="signupTab3-content"
+                     aria-labelledby="signupTab3"
+                     ng-switch-when="2"
+                     md-swipe-left="nextInnerTab()"
+                     md-swipe-right="previousInnerTab()">
+                  <md-input-container>
+                    <label>Phone</label>
+                    <input type="text" name="phone" placeholder="Phone" />
+                  </md-input-container>
+                  <md-input-container>
+                    <label>Address</label>
+                    <input type="textfield" name="address" placeholder="Address">
+                  </md-input-container>
+                </div>
+                <div class="md-padding">
+                  <md-button type="submit" class="md-raised md-primary">Sign-up</md-button>
+                </div>
+              </form>
+            </ng-switch>
           </div>
-
-          <div role="tabpanel"
-               id="signupTab3-content"
-               aria-labelledby="signupTab3"
-               ng-switch-when="2"
-               md-swipe-left="nextInnerTab()"
-               md-swipe-right="previousInnerTab()">
-            <md-input-container>
-              <label>Phone</label>
-              <input type="text" name="phone" placeholder="Phone" />
-            </md-input-container>
-            <md-input-container>
-              <label>Address</label>
-              <input type="textarea" name="address" placeholder="Address">
-            </md-input-container>
-          </div>
-            <md-button type="submit" class="md-raised md-primary">Sign-up</md-button>
-          </form>
-      </ng-switch>
-
-
-
-      </div>
-      </ng-switch>
-    </md-card>
-    </md-content>
+        </ng-switch>
+      </md-content>
+    </div>
   </div>
 </div>
