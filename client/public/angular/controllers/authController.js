@@ -1,4 +1,4 @@
-angular.module('authController', ['ngStorage'])
+angular.module('authController', [])
 .controller('LoginCtrl', ['$scope', '$http', '$localStorage', 'authFactory', function($scope, $http, $localStorage, authFactory){
     $scope.userData = {};
     $scope.skillData = {};
