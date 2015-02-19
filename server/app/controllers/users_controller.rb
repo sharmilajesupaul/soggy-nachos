@@ -8,10 +8,10 @@ class UsersController < ApplicationController
 		user = User.new(user_params)
 
 		skill_params.each do |skill, value|
-			added_skill = Skill.find_or_create_by(name: skill)
 			if value == true
-				user.skills << added_skill 
-				added_skill.increase_frequency
+				current_skill = Skill.find_or_create_by(name: skill)
+				user.skills << current_skill 
+				current_skill.increase_frequency
 			end
 		end
 
@@ -23,9 +23,21 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def edit
+	def update
 		user = User.find(params[:id])
-		# user.update_attributes(params[:user])
+
+		user.update_attributes(user_params)
+
+		skill_params.each do |skill, value|
+			current_skill = Skill.find_or_create_by(name: skill)
+			if value == true and !user.skills.include?(current_skill)
+				user.skills << current_skill
+				current_skill.increase_frequency
+			elsif value == false and user.skills.include?(current_skill)
+				user.skills.delete(current_skill)
+				current_skill.decrease_frequency
+			end
+		end
 	end
 
 	def show
@@ -36,13 +48,6 @@ class UsersController < ApplicationController
 	def destroy
 		User.destroy(params[:id])
 	end
-
-	# def login
-	# 	user = User.find_by(email: params[:email])
-	# 	if user.authenticate(params[:password])
-
-	# 	end
-	# end
 
 	private
 
