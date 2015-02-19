@@ -4,12 +4,14 @@ angular.module('soggyNachos', ['firebase',
                                'authController',
                                'ngMaterial',
                                'ngMessages',
+                               'themeConfig',
                                'userFactory',
                                'userRoutes'])
 
 .run(['$location', function($location){
     $location.path("/");
 }])
+
 
 .controller('MainCtrl', ['$scope', '$firebase', '$http', function($scope, $firebase, $http){
 

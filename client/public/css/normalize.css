@@ -238,12 +238,12 @@ samp {
  * styling of `select`, unless a `border` property is set.
  */
 
-/**
+*
  * 1. Correct color not being inherited.
  *    Known issue: affects color of disabled elements.
  * 2. Correct font properties not being inherited.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
- */
+ 
 
 button,
 input,
