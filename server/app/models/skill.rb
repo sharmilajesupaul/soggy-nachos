@@ -6,4 +6,9 @@ class Skill < ActiveRecord::Base
 		self.frequency += 1
 		self.save
 	end
+
+	def decrease_frequency
+		self.frequency -= 1
+		self.save
+	end
 end
