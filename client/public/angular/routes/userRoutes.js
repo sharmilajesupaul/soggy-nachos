@@ -6,6 +6,6 @@ angular.module('userRoutes', [])
     url           : "/",
     templateUrl   : "angular/templates/landing.html",
     controller    : 'LoginCtrl'
-  });
+  })
 
 }]);

@@ -54,5 +54,4 @@ angular.module('authController', [])
     $scope.previousInnerTab = function() {
       $scope.tabData.signupTabIndex = Math.max($scope.tabData.signupTabIndex - 1, 0);
     };
-
 }]);

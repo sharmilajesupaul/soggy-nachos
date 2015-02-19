@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :skill_users
+  has_many :skills, through: :skill_users
   # validates :email, presence: true, uniqueness: true
   # users.password_hash in the database is a :string
   include BCrypt

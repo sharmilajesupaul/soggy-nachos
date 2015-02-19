@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProfileTest < ActiveSupport::TestCase
+class SkillUserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
