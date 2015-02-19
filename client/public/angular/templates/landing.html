@@ -69,7 +69,7 @@
             </md-tabs>
 
             <ng-switch on="tabData.signupTabIndex" class="tabpanel-container">
-              <form name="signupForm" class="auth-form" ng-submit="createUser()">
+              <form name="signupForm" class="auth-form" ng-submit="signup()">
                 <div role="tabpanel"
                      id="signupTab1-content"
                      aria-labelledby="signupTab1"
@@ -79,7 +79,7 @@
 
                     <md-input-container>
                       <label>Name</label>
-                      <input type="text" name="name" pattern=".{3,}" ng-model="userData.user.name" required/><br/>
+                      <input type="text" name="name" pattern=".{3,}" ng-model="userData.name" required/><br/>
                       <div ng-messages="signupForm.name.$error">
                         <div ng-message="required">This is required.</div>
                         <div ng-message="pattern">Name too short.</div>
@@ -88,7 +88,7 @@
 
                     <md-input-container>
                       <label>Email</label>
-                      <input type="email" name="email" ng-model="userData.user.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
+                      <input type="email" name="email" ng-model="userData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
                       <div ng-messages="signupForm.email.$error">
                         <div ng-message="required">This is required.</div>
                         <div ng-message="pattern">Please enter a valid email.</div>
@@ -97,7 +97,7 @@
 
                     <md-input-container>
                       <label>Password</label>
-                      <input type="password" pattern=".{6,}" name="password" ng-model="userData.user.password" required/>
+                      <input type="password" pattern=".{6,}" name="password" ng-model="userData.password" required/>
                       <div ng-messages="signupForm.password.$error">
                         <div ng-message="required">This is required.</div>
                         <div ng-message="pattern">Password too short.</div>
@@ -112,27 +112,29 @@
                      md-swipe-left="nextInnerTab()"
                      md-swipe-right="previousInnerTab()">
 
-                  <md-checkbox class="checkbox-button" ng-model="data.cb1">
+                     <!-- <h2>{{profileData}}</h2> -->
+
+                  <md-checkbox class="checkbox-button" ng-model="skillData.sql">
                     <label>SQL</label>
                   </md-checkbox>
 
-                  <md-checkbox class="checkbox-button" ng-model="data.cb2">
+                  <md-checkbox class="checkbox-button" ng-model="skillData.java">
                     <label>Java</label>
                   </md-checkbox>
 
-                  <md-checkbox class="checkbox-button" ng-model="data.cb3">
+                  <md-checkbox class="checkbox-button" ng-model="skillData.ruby">
                     <label>Ruby</label>
                   </md-checkbox>
 
-                  <md-checkbox class="checkbox-button" ng-model="data.cb4">
+                  <md-checkbox class="checkbox-button" ng-model="skillData.jquery">
                     <label>jQuery</label>
                   </md-checkbox>
 
-                  <md-checkbox class="checkbox-button" ng-model="data.cb5">
+                  <md-checkbox class="checkbox-button" ng-model="skillData.angular">
                     <label>AngularJS</label>
                   </md-checkbox>
 
-                  <md-checkbox class="checkbox-button" ng-model="data.cb6">
+                  <md-checkbox class="checkbox-button" ng-model="skillData.react">
                     <label>ReactJS</label>
                   </md-checkbox>
                 </div>

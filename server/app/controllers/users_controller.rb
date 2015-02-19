@@ -58,7 +58,7 @@ class UsersController < ApplicationController
 
 	def create_token(user)
 	  secret = 'secret'
-	  JWT.encode(user, secret)
+	  JWT.encode({user: user}, secret)
 	end
 
 	def user_params

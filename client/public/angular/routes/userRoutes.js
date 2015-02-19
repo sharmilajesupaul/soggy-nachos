@@ -6,12 +6,6 @@ angular.module('userRoutes', [])
     url           : "/",
     templateUrl   : "angular/templates/landing.html",
     controller    : 'LoginCtrl'
-  });
-
-  .state('test', {
-    url           : "/test",
-    templateUrl   : "angular/templates/landing.html",
-    controller    : 'TestCtrl'
-  });
+  })
 
 }]);
