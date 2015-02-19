@@ -29,12 +29,12 @@ class UsersController < ApplicationController
 		user.update_attributes(user_params)
 
 		skill_params.each do |skill, value|
-			if value == true and !user.skills.include?(skill)
-				current_skill = Skill.find_or_create_by(name: skill)
+			current_skill = Skill.find_or_create_by(name: skill)
+			if value == true and !user.skills.include?(current_skill)
 				user.skills << current_skill
 				current_skill.increase_frequency
-			elsif value == false and user.skills.include?(skill)
-				user.skills.delete(skill)
+			elsif value == false and user.skills.include?(current_skill)
+				user.skills.delete(current_skill)
 				current_skill.decrease_frequency
 			end
 		end
