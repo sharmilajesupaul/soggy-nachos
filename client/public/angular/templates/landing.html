@@ -49,7 +49,7 @@
             </form>
           </div>
 
-          <div role="tabpanel"
+          <div ng-controller="LoginCtrl" role="tabpanel"
                id="tab2-content"
                aria-labelledby="tab2"
                ng-switch-when="1"
@@ -103,6 +103,10 @@
                         <div ng-message="pattern">Password too short.</div>
                       </div>
                     </md-input-container>
+                  <div class="md-padding" style="margin-top: 5%;">
+                    <md-button ng-click="nextTab('inner')" class="md-raised md-primary">Next <i class="fa fa-chevron-right"></i></md-button>
+                  </div>
+
                 </div>
 
                 <div role="tabpanel"
@@ -111,32 +115,29 @@
                      ng-switch-when="1"
                      md-swipe-left="nextTab('inner')"
                      md-swipe-right="previousTab('inner')">
-
-                     <!-- <h2>{{profileData}}</h2> -->
-
-                  <md-checkbox class="checkbox-button" ng-model="skillData.sql">
-                    <label>SQL</label>
-                  </md-checkbox>
-
-                  <md-checkbox class="checkbox-button" ng-model="skillData.java">
-                    <label>Java</label>
-                  </md-checkbox>
-
-                  <md-checkbox class="checkbox-button" ng-model="skillData.ruby">
-                    <label>Ruby</label>
-                  </md-checkbox>
-
-                  <md-checkbox class="checkbox-button" ng-model="skillData.jquery">
-                    <label>jQuery</label>
-                  </md-checkbox>
-
-                  <md-checkbox class="checkbox-button" ng-model="skillData.angular">
-                    <label>AngularJS</label>
-                  </md-checkbox>
-
-                  <md-checkbox class="checkbox-button" ng-model="skillData.react">
-                    <label>ReactJS</label>
-                  </md-checkbox>
+                  <div layout="row" layout-wrap>
+                      <md-checkbox ng-repeat="skill in defaultSkills" class="checkbox-button" ng-model="skillData[skill]" aria-label="skills">
+                        <label>{{ skill | uppercase }}</label>
+                      </md-checkbox>
+                  </div>
+                  <div layout="row" layout-fill>
+                    <md-input-container style="width: 100%;">
+                      <label>Add New Skill</label>
+                      <input ng-enter="addSkill()" type="text" name="newSkill" ng-model="newSkill.name" md-maxlength="20" pattern="[a-zA-Z0-9]{2,}" required/>
+                      <div ng-messages="signupForm.newSkill.$error">
+                        <div ng-message="pattern">Invalid skill name, dumbass.</div>
+                        <div ng-message="required">This is fucking required.</div>
+                        <div ng-message="md-maxlength">This is a skill, not your fucking life story. Asshole. </div>
+                        <div ng-message="duplicate">This fucking skill already exists.</div>
+                      </div>
+                    </md-input-container>
+                    <a ng-click="addSkill()" class="md-primary">
+                      <i class="fa fa-plus fa-2x" style="color:beige;"></i>
+                    </a>
+                  </div>
+                  <div class="center md-padding" style="margin-top: 5%;">
+                    <md-button ng-click="nextTab('inner')" class="md-raised md-primary">Next<i class="fa fa-chevron-right"></i></md-button>
+                  </div>
                 </div>
 
                 <div role="tabpanel"
@@ -146,12 +147,12 @@
                      md-swipe-left="nextTab('inner')"
                      md-swipe-right="previousTab('inner')">
                   <md-input-container>
-                    <label>Phone</label>
-                    <input type="text" name="phone" placeholder="Phone" />
+                    <label>Bio</label>
+                    <input type="textfield" name="bio"/>
                   </md-input-container>
                   <md-input-container>
-                    <label>Address</label>
-                    <input type="textfield" name="address" placeholder="Address">
+                    <label>Location</label>
+                    <input type="textfield" name="location"/>
                   </md-input-container>
                   <div class="md-padding" style="margin-top: 5%;">
                     <md-button type="submit" class="md-raised md-primary">Sign-up</md-button>
