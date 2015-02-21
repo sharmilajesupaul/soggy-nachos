@@ -39,7 +39,7 @@ md-checkbox div.md-container {
 /* Checkbox label alignment */
 .checkbox-button {
   display: inline-block;
-  margin: 5% auto;
+  /*margin: 5% auto;*/
 }
 
 /* default styling for labels */
