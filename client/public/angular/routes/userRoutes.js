@@ -8,4 +8,12 @@ angular.module('userRoutes', [])
     controller    : 'LoginCtrl'
   })
 
+  .state('mainDash', {
+    url           : '/dash',
+    templateUrl   : "angular/templates/mainDash.html",
+    controller    : 'DashCtrl'
+  });
+
+  $urlRouterProvider.otherwise('/');
+
 }]);

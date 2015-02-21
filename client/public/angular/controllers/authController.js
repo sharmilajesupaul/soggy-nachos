@@ -1,23 +1,55 @@
 angular.module('authController', [])
-.controller('LoginCtrl', ['$scope', '$http', '$localStorage', 'authFactory', function($scope, $http, $localStorage, authFactory){
+.controller('LoginCtrl', ['$scope', '$http', '$localStorage', '$location', 'authFactory', 'authenticationCheck', function($scope, $http, $localStorage, $location, authFactory, authenticationCheck){
+    $scope.newSkill = {};
+    // $scope.toolToggle = false;
     $scope.userData = {};
     $scope.skillData = {};
     $scope.loginData = {};
 
-    var profileData = {user: $scope.userData, skills: $scope.skillData};
+    $scope.defaultSkills = ['javascript',
+                            'ruby',
+                            'python',
+                            'PHP',
+                            'scala',
+                            'HTML5',
+                            'CSS3',
+                            'swift',
+                            'C#',
+                            'C++',
+                            'Java',
+                            'angularjs',
+                            'emberjs',
+                            'backbonejs',
+                            'nodejs',
+                            'sql'];
+
+    $scope.profileData = {user: $scope.userData, skills: $scope.skillData};
+
+    $scope.addSkill = function (){
+      if($scope.defaultSkills.indexOf($scope.newSkill.name) === -1 && $scope.newSkill.name !== undefined){
+        $scope.defaultSkills.push($scope.newSkill.name);
+        $scope.newSkill = {};
+      } else if($scope.newSkill.name === undefined){
+        $scope.signupForm.newSkill.$error.pattern = true;
+      }
+      else {
+        $scope.signupForm.newSkill.$error.duplicate = true;
+      }
+    };
 
     $scope.signup = function () {
-      authFactory.signup(profileData)
+      authFactory.signup($scope.profileData)
       .success(signupSuccessCallback)
       .error(signupErrorCallback);
     };
 
-    function signupSuccessCallback (data, status, headers, config) {
+    function signupSuccessCallback (data) {
       $localStorage.user = data.user;
       $localStorage.token = data.token;
+      $location.path('/dash');
     }
 
-    function signupErrorCallback (data, status, headers, config) {
+    function signupErrorCallback (data, status) {
       console.log('error:', status);
     }
 
@@ -28,10 +60,12 @@ angular.module('authController', [])
       .error(loginErrorCallback);
     };
 
-    function loginSuccessCallback (data, status, headers, config){
-      console.log(data);
+    function loginSuccessCallback (data){
+      $localStorage.user = data.user;
+      $localStorage.token = data.token;
+      $location.path('/dash');
     }
-    function loginErrorCallback (data, status, headers, config) {
+    function loginErrorCallback (data, status) {
       console.log('error:', status);
     }
 
@@ -41,17 +75,28 @@ angular.module('authController', [])
       signupTabIndex : 0
     };
 
-    $scope.nextTab = function() {
-      $scope.tabData.selectedIndex = Math.min($scope.tabData.selectedIndex + 1, 2) ;
-    };
-    $scope.previousTab = function() {
-      $scope.tabData.selectedIndex = Math.max($scope.tabData.selectedIndex - 1, 0);
+    $scope.nextTab = function(name) {
+      if (name === "inner"){
+        $scope.tabData.signupTabIndex = tabForward($scope.tabData.signupTabIndex) ;
+      }else {
+        $scope.tabData.selectedIndex = tabForward($scope.tabData.selectedIndex) ;
+      }
     };
 
-    $scope.nextInnerTab = function() {
-      $scope.tabData.signupTabIndex = Math.min($scope.tabData.signupTabIndex + 1, 2) ;
+    $scope.previousTab = function(name) {
+      if(name === "inner"){
+        $scope.tabData.signupTabIndex = tabBack($scope.tabData.signupTabIndex);
+      }else{
+        $scope.tabData.selectedIndex = tabBack($scope.tabData.selectedIndex);
+      }
     };
-    $scope.previousInnerTab = function() {
-      $scope.tabData.signupTabIndex = Math.max($scope.tabData.signupTabIndex - 1, 0);
-    };
+
+    function tabForward (tabIndex) {
+      return Math.min(tabIndex + 1, 2);
+    }
+
+    function tabBack (tabIndex) {
+      return Math.max(tabIndex - 1, 0);
+    }
+
 }]);

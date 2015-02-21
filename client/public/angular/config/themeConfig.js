@@ -1,4 +1,4 @@
- angular.module('themeConfig', [])
+angular.module('themeConfig', [])
 .config(['$mdThemingProvider',function($mdThemingProvider) {
       // Theme Hex Values:
       // primary - E5DFC5

@@ -1,22 +1,22 @@
 angular.module('userFactory', [])
 
 .factory('authenticationCheck', ['$localStorage', function($localStorage){
-  var auth = {
+  return {
 
-    isLogged: false,
+    // isLogged: false,
 
     check: function() {
-      if ($localStorage.user) {
-        this.isLogged = true;
+      if ($localStorage.user && $localStorage.token) {
+        // this.isLogged = true;
+        return true;
       } else {
-        this.isLogged = false;
+        // this.isLogged = false;
         delete $localStorage.user;
         delete $localStorage.token;
+        return false;
       }
     }
   };
-
-  return auth;
 }])
 
 .factory('authFactory', ['$http', '$localStorage', '$location', 'authenticationCheck',  function($http, $localStorage, $location, authenticationCheck){
@@ -35,7 +35,6 @@ angular.module('userFactory', [])
 
         // if we choose to store token in local storage
         // delete $localStorage.token;
-
         $location.path("/landing");
       }
     }
