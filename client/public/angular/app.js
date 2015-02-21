@@ -8,7 +8,8 @@ angular.module('soggyNachos', ['firebase',
                                'dashController',
                                'themeConfig',
                                'userFactory',
-                               'userRoutes'])
+                               'userRoutes',
+                               'dashRoutes'])
 
 .run(['$location', '$state', 'authenticationCheck', '$localStorage', function($location, $state, authenticationCheck, $localStorage){
     // console.log($localStorage.user);
