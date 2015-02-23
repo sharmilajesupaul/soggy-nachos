@@ -118,8 +118,13 @@ md-checkbox div.md-container {
   50%       { background:rgb(119, 218, 78); transform:scale(1.5); }
 }
 
-.subheaderdemoBasicUsage .face {
+.face {
   border-radius: 30px;
   border: 1px solid #ddd;
   width: 48px;
   margin: 16px; }
+
+.fa-sign-out {
+  margin-top: 25%;
+  float: right;
+}
