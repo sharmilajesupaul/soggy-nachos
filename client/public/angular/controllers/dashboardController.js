@@ -1,11 +1,15 @@
 angular.module('dashController', [])
-.controller('DashCtrl', ['$scope', '$timeout', '$mdSidenav', '$log', 'authFactory', function($scope, $timeout, $mdSidenav, $log, authFactory){
+.controller('DashCtrl', ['$scope', '$timeout', '$mdSidenav', '$log', 'authFactory', '$localStorage', function($scope, $timeout, $mdSidenav, $log, authFactory, $localStorage){
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   }
 
   $scope.logout = function() {
     authFactory.logout()
+  }
+
+  $scope.destroy = function() {
+    authFactory.destroy()
   }
 
 }])

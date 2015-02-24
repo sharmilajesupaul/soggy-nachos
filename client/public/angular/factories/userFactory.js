@@ -33,8 +33,22 @@ angular.module('userFactory', [])
 
         delete $localStorage.user;
         delete $localStorage.token;
-        
+
         $location.path("/");
+      }
+    },
+    destroy: function(){
+      if (authenticationCheck.check) {
+        $http.delete('http://localhost:3000/users/'+$localStorage.user.id)
+        .success(function(data, status){
+            delete $localStorage.user;
+            delete $localStorage.token;
+
+            $location.path("/");
+          })
+        .error(function(data, status){
+          console.log(status)
+        })
       }
     }
   };
