@@ -28,14 +28,13 @@ angular.module('userFactory', [])
       return $http.post('http://localhost:3000/login', user);
     },
     logout: function() {
-      if (authenticationCheck.isLogged) {
-        authenticationCheck.isLogged = false;
+      if (authenticationCheck.check) {
+        authenticationCheck.check = false;
 
         delete $localStorage.user;
-
-        // if we choose to store token in local storage
-        // delete $localStorage.token;
-        $location.path("/landing");
+        delete $localStorage.token;
+        
+        $location.path("/");
       }
     }
   };
