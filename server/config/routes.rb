@@ -16,8 +16,14 @@ Rails.application.routes.draw do
       resources :skills
     end
 
+    resources :friend_requests do 
+      resources :friendships
+    end
+
     # get '/login' => 'auth#login'
     post '/login' => 'auth#login'
+
+    get '/friend_requests_sent/:id' => 'friend_requests#sent'
 
   # Example resource route with options:
   #   resources :products do

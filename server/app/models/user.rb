@@ -1,5 +1,12 @@
 class User < ActiveRecord::Base
+
   include BCrypt
+
+  has_many :friendships
+  has_many :friends, :through => :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  has_many :friend_requests
 
   has_many :skill_users
   has_many :skills, through: :skill_users

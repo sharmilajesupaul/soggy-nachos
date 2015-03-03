@@ -1,57 +1,61 @@
 <div ng-controller="FeedCtrl" layout="column" flex layout-fill>
   <md-content style="height: 600px;">
     <section>
-      <md-subheader class="md-primary">Unread Messages</md-subheader>
+      <md-subheader class="md-primary">Users</md-subheader>
       <md-list layout="column">
-        <md-item ng-repeat="message in messages">
+        <md-item ng-repeat="user in users">
           <md-item-content>
             <div class="md-tile-left">
-                <img ng-src="{{message.face}}" class="face" alt="{{message.who}}">
+                <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
+                <h3>{{user.name}}</h3>
             </div>
             <div class="md-tile-content">
-              <h3>{{message.what}}</h3>
+              <h4><a href ng-click="sendFriendRequest(user.id)">Add Friend</a></h4>
+<!--               <h3>{{message.what}}</h3>
               <h4>{{message.who}}</h4>
               <p>
                 {{message.notes}}
-              </p>
+              </p> -->
             </div>
           </md-item-content>
         </md-item>
       </md-list>
     </section>
     <section>
-      <md-subheader class="md-warn">Late Messages</md-subheader>
+      <md-subheader class="md-warn">Sent Friend Requests</md-subheader>
       <md-list layout="column">
-        <md-item ng-repeat="message in messages">
+        <md-item ng-repeat="requests in requestsSent">
           <md-item-content>
             <div class="md-tile-left">
-                <img ng-src="{{message.face}}" class="face" alt="{{message.who}}">
+                <h3>{{requests}}</h3>
+                <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
             </div>
             <div class="md-tile-content">
-              <h3>{{message.what}}</h3>
+<!--               <h3>{{message.what}}</h3>
               <h4>{{message.who}}</h4>
               <p>
                 {{message.notes}}
-              </p>
+              </p> -->
             </div>
           </md-item-content>
         </md-item>
       </md-list>
     </section>
     <section>
-      <md-subheader>Read Messages</md-subheader>
+      <md-subheader>Incoming Friend Requests</md-subheader>
       <md-list layout="column">
-        <md-item ng-repeat="message in messages">
+        <md-item ng-repeat="requests in requestsReceived">
           <md-item-content>
             <div class="md-tile-left">
-                <img ng-src="{{message.face}}" class="face" alt="{{message.who}}">
+                <h3>{{requests}}</h3>
+                <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
             </div>
             <div class="md-tile-content">
-              <h3>{{message.what}}</h3>
+<!--               <h3>{{message.what}}</h3>
               <h4>{{message.who}}</h4>
               <p>
                 {{message.notes}}
-              </p>
+              </p> -->
             </div>
           </md-item-content>
         </md-item>
@@ -60,17 +64,17 @@
     <section>
       <md-subheader class="md-accent">Archived messages</md-subheader>
       <md-list layout="column">
-        <md-item ng-repeat="message in messages">
+        <md-item ng-repeat="user in users">
           <md-item-content>
             <div class="md-tile-left">
-                <img ng-src="{{message.face}}" class="face" alt="{{message.who}}">
+                <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
             </div>
             <div class="md-tile-content">
-              <h3>{{message.what}}</h3>
+<!--               <h3>{{message.what}}</h3>
               <h4>{{message.who}}</h4>
               <p>
                 {{message.notes}}
-              </p>
+              </p> -->
             </div>
           </md-item-content>
         </md-item>
