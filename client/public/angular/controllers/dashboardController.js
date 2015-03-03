@@ -14,12 +14,12 @@ angular.module('dashController', [])
 
 }])
 
-.controller('FeedCtrl', ['$scope', '$localStorage', '$http', function($scope, $localStorage, $http){
+.controller('FeedCtrl', ['$scope', '$localStorage', '$http', 'friendRequests', 'userData', function($scope, $localStorage, $http, friendRequests, userData){
 
   currentUserId = $localStorage.user.id
 
   $scope.sendFriendRequest = function(requested_id) {
-    $http.post('http://localhost:3000/friend_requests', {requesting_user_id: currentUserId, requested_user_id: requested_id})
+    friendRequests.sendRequest(currentUserId, requested_id)
     .success(function(data){
       console.log(data)
     })
@@ -28,7 +28,7 @@ angular.module('dashController', [])
     });
   };
 
-  $http.get('http://localhost:3000/users')
+  userData.getAllUsers()
   .success(function(data){
     console.log('success')
     console.log(data)
@@ -39,7 +39,7 @@ angular.module('dashController', [])
     console.log(status)
   });
 
-  $http.get('http://localhost:3000/friend_requests/'+currentUserId)
+  friendRequests.getRequests(currentUserId)
   .success(function(data){
     $scope.requestsReceived = data
     console.log('success')
@@ -50,7 +50,7 @@ angular.module('dashController', [])
     console.log(status)
   })
 
-  $http.get('http://localhost:3000/friend_requests_sent/'+currentUserId)
+  friendRequests.getSentRequests(currentUserId)
   .success(function(data){
     $scope.requestsSent = data
     console.log('success')
@@ -58,7 +58,7 @@ angular.module('dashController', [])
   })
   .error(function(data, status){
     console.log('failure')
-    console.log('status')
+    console.log(status)
   })
 
 

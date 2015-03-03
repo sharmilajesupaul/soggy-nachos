@@ -1,6 +1,6 @@
 class FriendRequest < ActiveRecord::Base
-	belongs_to :requesting_user, :class_name => "User"
-	belongs_to :requested_user, :class_name => "User"
+	belongs_to :requesting_user, :class_name => "User" # one of these may need to just belong to user
+	belongs_to :requested_user, :class_name => "User" # one of these may need to just belong to user
 
 	validates :requesting_user_id, presence: true
 	validates :requested_user_id, presence: true
