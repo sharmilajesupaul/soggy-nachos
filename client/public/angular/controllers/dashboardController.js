@@ -28,11 +28,16 @@ angular.module('dashController', [])
     });
   };
 
-  $scope.confirmFriend = function(friend_id) {
-    console.log('friend id: ', friend_id)
-    friends.createFriendship(currentUserId, friend_id)
+  $scope.removeRequest = function(request){
+    var index = $scope.requestsReceived.indexOf(request)
+    $scope.requestsReceived.splice(index, 1)
+  }
+
+  $scope.confirmRequest = function(request) {
+    console.log(request)
+    friends.createFriendship(currentUserId, request.id)
     .success(function(data){
-      console.log('friendship created')
+      $scope.removeRequest(request)
       console.log(data)
     })
     .error(function(data, status){
@@ -44,7 +49,7 @@ angular.module('dashController', [])
   .success(function(data){
     console.log('success')
     console.log('friends: ', data)
-    $scope.friends = data 
+    $scope.friends = data
   })
   .error(function(data, status){
     console.log(status)

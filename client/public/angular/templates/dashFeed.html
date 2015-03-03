@@ -1,17 +1,17 @@
 <div ng-controller="FeedCtrl" layout="column" flex layout-fill>
   <md-content style="height: 600px;">
     <section>
-      <md-subheader class="md-primary">Users</md-subheader>
+      <md-subheader class="md-primary">Potential Matches</md-subheader>
       <md-list layout="column">
         <md-item ng-repeat="user in users">
           <md-item-content>
             <div class="md-tile-left">
                 <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
-                <h3>{{user.name}}</h3>
+                <h3 ng-hide"">{{user.name}}</h3>
             </div>
             <div class="md-tile-content">
               <h4><a href ng-click="sendFriendRequest(user.id)">Add Friend</a></h4>
-<!--               <h3>{{message.what}}</h3>
+<!--               <h3 ng-hide="">{{message.what}}</h3>
               <h4>{{message.who}}</h4>
               <p>
                 {{message.notes}}
@@ -31,7 +31,7 @@
                 <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
             </div>
             <div class="md-tile-content">
-<!--               <h3>{{message.what}}</h3>
+<!--               <h3 ng-hide="">{{message.what}}</h3>
               <h4>{{message.who}}</h4>
               <p>
                 {{message.notes}}
@@ -47,11 +47,11 @@
         <md-item ng-repeat="request in requestsReceived">
           <md-item-content>
             <div class="md-tile-left">
-                <h3>{{request.name}} <h4><a href ng-click="confirmFriend(request.id)">Confirm Friend</a></h4></h3>
+                <h3>{{request.name}} <a href ng-click="confirmRequest(request)">Confirm Friend</a></h3>
                 <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
             </div>
             <div class="md-tile-content">
-<!--               <h3>{{message.what}}</h3>
+<!--               <h3 ng-hide="">{{message.what}}</h3>
               <h4>{{message.who}}</h4>
               <p>
                 {{message.notes}}
@@ -71,7 +71,7 @@
                 <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
             </div>
             <div class="md-tile-content">
-<!--               <h3>{{message.what}}</h3>
+<!--               <h3 ng-hide="">{{message.what}}</h3>
               <h4>{{message.who}}</h4>
               <p>
                 {{message.notes}}
