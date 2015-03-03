@@ -1,6 +1,6 @@
 angular.module('dashFactory', [])
 
-.factory('friendRequests', ['$http', function($http){
+.factory('friends', ['$http', function($http){
 	return {
 		sendRequest: function(requesting_id, requested_id){
 			return $http.post('http://localhost:3000/friend_requests', {requesting_user_id: requesting_id, requested_user_id: requested_id})
@@ -10,6 +10,12 @@ angular.module('dashFactory', [])
 		},
 		getSentRequests: function(requesting_id){
 			return $http.get('http://localhost:3000/friend_requests_sent/'+requesting_id)
+		},
+		getFriends: function(user_id){
+			return $http.get('http://localhost:3000/friendships/'+user_id)
+		},
+		createFriendship: function(user_id, friend_id){
+			return $http.post('http://localhost:3000/friendships', {user_id: user_id, friend_id: friend_id})
 		}
 	}
 }])

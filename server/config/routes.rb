@@ -16,9 +16,9 @@ Rails.application.routes.draw do
       resources :skills
     end
 
-    resources :friend_requests do 
-      resources :friendships
-    end
+    resources :friend_requests
+    
+    resources :friendships
 
     # get '/login' => 'auth#login'
     post '/login' => 'auth#login'

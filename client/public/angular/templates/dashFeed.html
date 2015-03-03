@@ -24,10 +24,10 @@
     <section>
       <md-subheader class="md-warn">Sent Friend Requests</md-subheader>
       <md-list layout="column">
-        <md-item ng-repeat="requests in requestsSent">
+        <md-item ng-repeat="request in requestsSent">
           <md-item-content>
             <div class="md-tile-left">
-                <h3>{{requests}}</h3>
+                <h3>{{request.name}}</h3>
                 <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
             </div>
             <div class="md-tile-content">
@@ -44,10 +44,10 @@
     <section>
       <md-subheader>Incoming Friend Requests</md-subheader>
       <md-list layout="column">
-        <md-item ng-repeat="requests in requestsReceived">
+        <md-item ng-repeat="request in requestsReceived">
           <md-item-content>
             <div class="md-tile-left">
-                <h3>{{requests}}</h3>
+                <h3>{{request.name}} <h4><a href ng-click="confirmFriend(request.id)">Confirm Friend</a></h4></h3>
                 <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
             </div>
             <div class="md-tile-content">
@@ -62,11 +62,12 @@
       </md-list>
     </section>
     <section>
-      <md-subheader class="md-accent">Archived messages</md-subheader>
+      <md-subheader class="md-accent">Friends</md-subheader>
       <md-list layout="column">
-        <md-item ng-repeat="user in users">
+        <md-item ng-repeat="friend in friends">
           <md-item-content>
             <div class="md-tile-left">
+              <h3>{{friend.name}}</h3>
                 <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
             </div>
             <div class="md-tile-content">
