@@ -18,9 +18,18 @@ angular.module('dashController', [])
 
   currentUserId = $localStorage.user.id
 
-  $scope.sendFriendRequest = function(requested_id) {
-    friends.sendRequest(currentUserId, requested_id)
+  $scope.sendFriendRequest = function(requestedUser) {
+    friends.sendRequest(currentUserId, requestedUser.id)
     .success(function(data){
+      // var alreadyRequested = false
+      // $scope.requestsSent.forEach(function(request){
+      //   if (request.id == requestedUser.id) {
+      //     alreadyRequested = true
+      //   }
+      // })
+      // if (alreadyRequested == false){
+      //   $scope.requestsSent.push(requestedUser)
+      // }
       console.log(data)
     })
     .error(function(data, status){
@@ -34,10 +43,18 @@ angular.module('dashController', [])
   }
 
   $scope.confirmRequest = function(request) {
-    console.log(request)
     friends.createFriendship(currentUserId, request.id)
     .success(function(data){
       $scope.removeRequest(request)
+      var alreadyFriend = false
+      $scope.friends.forEach(function(friend){
+        if (friend.id == request.id) {
+          alreadyFriend = true
+        }
+      })
+      if (alreadyFriend == false) {
+        $scope.friends.push(request)
+      }
       console.log(data)
     })
     .error(function(data, status){
@@ -87,6 +104,5 @@ angular.module('dashController', [])
     console.log('failure')
     console.log(status)
   })
-
 
 }])
