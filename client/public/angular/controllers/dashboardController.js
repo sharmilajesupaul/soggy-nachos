@@ -75,8 +75,13 @@ angular.module('dashController', [])
   userData.getAllUsers()
   .success(function(data){
     console.log('success')
-    console.log(data)
-    $scope.users = data
+    var userData = data 
+    $scope.users = []
+    userData.forEach(function(user){
+      if (user.id != currentUserId){
+        $scope.users.push(user)
+      }
+    })
   })
   .error(function(data, status){
     console.log('failure')
