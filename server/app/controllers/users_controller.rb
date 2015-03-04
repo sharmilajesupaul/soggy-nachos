@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 		end
 
 		if user.save
-			render json: {user: user.id, token: create_token(user)}
+			render json: {user: user, token: create_token(user)}
 			session[:user_id] = user.id
 		else
 			session[:errors] = "invalid user data"
