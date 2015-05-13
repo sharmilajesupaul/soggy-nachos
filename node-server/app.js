@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.set('view engine', 'ejs'); // set up ejs for templating
+app.set('view engine', 'ejs');
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
@@ -57,7 +57,6 @@ fs.readdirSync(__dirname + '/app/models').forEach(function(filename) {
 require('./app/controllers/routes')(app); // configure our routes
 
 // start app ===============================================
-// startup our app at http://localhost:8080
 app.listen(port);
 console.log('listening on port', port);
 
