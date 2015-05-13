@@ -1,0 +1,26 @@
+{
+  "name": "soggy-nachos-server",
+  "main": "app.js",
+  "dependencies": {
+    "async": "~0.2.9",
+    "bcrypt-nodejs": "latest",
+    "body-parser": "~1.4.2",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.0.1",
+    "cors": "*",
+    "ejs": "~0.8.5",
+    "express": "~4.5.1",
+    "express-session": "^1.11.1",
+    "ff": "~0.2.0",
+    "fs": "*",
+    "jwt-simple": "*",
+    "method-override": "~2.0.2",
+    "morgan": "~1.0.0",
+    "mongoose": "~3.8.0",
+    "passport": "^0.2.1",
+    "passport-google-oauth": "~0.1.5",
+    "passport-local": "^1.0.0",
+    "passport-facebook": "~1.0.2",
+    "passport-twitter": "~1.0.2"
+  }
+}

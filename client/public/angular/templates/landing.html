@@ -1,10 +1,10 @@
 <div ng-controller="LoginCtrl" id="loginCtrl" style="background: #252120;" layout-fill>
-    <md-toolbar class="md-tall md-accent md-hue-3">
-      <span flex></span>
-      <h2 class="md-toolbar-tools md-toolbar-tools-bottom">
-        <span class="md-flex">Soggy Nachos</span>
-      </h2>
-    </md-toolbar>
+  <md-toolbar class="md-tall md-accent md-hue-3">
+    <span flex></span>
+    <h2 class="md-toolbar-tools md-toolbar-tools-bottom">
+      <span class="md-flex">Soggy Nachos</span>
+    </h2>
+  </md-toolbar>
 
   <div layout="row" class="landing-page" layout-fill>
     <div flex layout-padding layout="column" layout-align="center center">
@@ -19,12 +19,7 @@
         </md-tabs>
 
         <ng-switch on="tabData.selectedIndex" class="tabpanel-container">
-          <div role="tabpanel"
-               id="tab1-content"
-               aria-labelledby="tab1"
-               ng-switch-when="0"
-               md-swipe-left="nextTab()"
-               md-swipe-right="previousTab()" >
+          <div role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="nextTab()" md-swipe-right="previousTab()">
             <form ng-submit="login()" name="loginForm" class="auth-form">
               <md-input-container>
                 <label>Email</label>
@@ -43,18 +38,13 @@
                   <div ng-message="pattern">Password too short.</div>
                 </div>
               </md-input-container>
-              <div  style="margin-top: 5%;">
+              <div style="margin-top: 5%;">
                 <md-button type="submit" class="md-raised md-primary">Login</md-button>
               </div>
             </form>
           </div>
 
-          <div ng-controller="LoginCtrl" role="tabpanel"
-               id="tab2-content"
-               aria-labelledby="tab2"
-               ng-switch-when="1"
-               md-swipe-left="nextTab()"
-               md-swipe-right="previousTab()" >
+          <div ng-controller="LoginCtrl" role="tabpanel" id="tab2-content" aria-labelledby="tab2" ng-switch-when="1" md-swipe-left="nextTab()" md-swipe-right="previousTab()">
 
             <md-tabs md-stretch-tabs="always" class="md" md-selected="tabData.signupTabIndex">
               <md-tab id="signupTab1" aria-controls="signupTab1-content">
@@ -70,55 +60,46 @@
 
             <ng-switch on="tabData.signupTabIndex" class="tabpanel-container">
               <form name="signupForm" class="auth-form" ng-submit="signup()">
-                <div role="tabpanel"
-                     id="signupTab1-content"
-                     aria-labelledby="signupTab1"
-                     ng-switch-when="0"
-                     md-swipe-left="nextTab('inner')"
-                     md-swipe-right="previousTab('inner')" >
+                <div role="tabpanel" id="signupTab1-content" aria-labelledby="signupTab1" ng-switch-when="0" md-swipe-left="nextTab('inner')" md-swipe-right="previousTab('inner')">
 
-                    <md-input-container>
-                      <label>Name</label>
-                      <input type="text" name="name" pattern=".{3,}" ng-model="userData.name" required/><br/>
-                      <div ng-messages="signupForm.name.$error">
-                        <div ng-message="required">This is required.</div>
-                        <div ng-message="pattern">Name too short.</div>
-                      </div>
-                    </md-input-container>
+                  <md-input-container>
+                    <label>Name</label>
+                    <input type="text" name="name" pattern=".{3,}" ng-model="userData.name" required/>
+                    <br/>
+                    <div ng-messages="signupForm.name.$error">
+                      <div ng-message="required">This is required.</div>
+                      <div ng-message="pattern">Name too short.</div>
+                    </div>
+                  </md-input-container>
 
-                    <md-input-container>
-                      <label>Email</label>
-                      <input type="email" name="email" ng-model="userData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
-                      <div ng-messages="signupForm.email.$error">
-                        <div ng-message="required">This is required.</div>
-                        <div ng-message="pattern">Please enter a valid email.</div>
-                      </div>
-                    </md-input-container>
+                  <md-input-container>
+                    <label>Email</label>
+                    <input type="email" name="email" ng-model="userData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
+                    <div ng-messages="signupForm.email.$error">
+                      <div ng-message="required">This is required.</div>
+                      <div ng-message="pattern">Please enter a valid email.</div>
+                    </div>
+                  </md-input-container>
 
-                    <md-input-container>
-                      <label>Password</label>
-                      <input type="password" pattern=".{6,}" name="password" ng-model="userData.password" required/>
-                      <div ng-messages="signupForm.password.$error">
-                        <div ng-message="required">This is required.</div>
-                        <div ng-message="pattern">Password too short.</div>
-                      </div>
-                    </md-input-container>
+                  <md-input-container>
+                    <label>Password</label>
+                    <input type="password" pattern=".{6,}" name="password" ng-model="userData.password" required/>
+                    <div ng-messages="signupForm.password.$error">
+                      <div ng-message="required">This is required.</div>
+                      <div ng-message="pattern">Password too short.</div>
+                    </div>
+                  </md-input-container>
                   <div class="md-padding" style="margin-top: 5%;">
                     <md-button ng-click="nextTab('inner')" class="md-raised md-primary">Next <i class="fa fa-chevron-right"></i></md-button>
                   </div>
 
                 </div>
 
-                <div role="tabpanel"
-                     id="signupTab2-content"
-                     aria-labelledby="signupTab2"
-                     ng-switch-when="1"
-                     md-swipe-left="nextTab('inner')"
-                     md-swipe-right="previousTab('inner')">
+                <div role="tabpanel" id="signupTab2-content" aria-labelledby="signupTab2" ng-switch-when="1" md-swipe-left="nextTab('inner')" md-swipe-right="previousTab('inner')">
                   <div layout="row" layout-wrap>
-                      <md-checkbox ng-repeat="skill in defaultSkills" class="checkbox-button" ng-model="skillData[skill]" aria-label="skills">
-                        <label>{{ skill | uppercase }}</label>
-                      </md-checkbox>
+                    <md-checkbox ng-repeat="skill in defaultSkills" class="checkbox-button" ng-model="skillData[skill]" aria-label="skills">
+                      <label>{{ skill | uppercase }}</label>
+                    </md-checkbox>
                   </div>
                   <div layout="row" layout-fill>
                     <md-input-container style="width: 100%;">
@@ -140,19 +121,14 @@
                   </div>
                 </div>
 
-                <div role="tabpanel"
-                     id="signupTab3-content"
-                     aria-labelledby="signupTab3"
-                     ng-switch-when="2"
-                     md-swipe-left="nextTab('inner')"
-                     md-swipe-right="previousTab('inner')">
+                <div role="tabpanel" id="signupTab3-content" aria-labelledby="signupTab3" ng-switch-when="2" md-swipe-left="nextTab('inner')" md-swipe-right="previousTab('inner')">
                   <md-input-container>
                     <label>Bio</label>
-                    <input type="textfield" name="bio"/>
+                    <input type="textfield" name="bio" />
                   </md-input-container>
                   <md-input-container>
                     <label>Location</label>
-                    <input type="textfield" name="location"/>
+                    <input type="textfield" name="location" />
                   </md-input-container>
                   <div class="md-padding" style="margin-top: 5%;">
                     <md-button type="submit" class="md-raised md-primary">Sign-up</md-button>
