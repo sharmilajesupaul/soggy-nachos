@@ -4,7 +4,6 @@ var ff = require('ff');
 module.exports = function(app) {
 
   app.post('/login', function(req, res) {
-    console.log(req.body);
     if (!req.body.email || !req.body.password) {
       return res.send(400, 'missing parameters');
     }
@@ -12,20 +11,18 @@ module.exports = function(app) {
       email: req.body.email
     }).exec(function(err, user) {
       if (err) {
-        console.log(1);
         return res.send(err);
       }
       if (!user) {
-        console.log(2);
         return res.send(400);
       }
       if (!user.validPassword(req.body.password)) {
-        console.log(3);
         return res.send(400);
       }
       res.send({
         user: user
       });
+      console.log('login call completed');
     });
   });
 
