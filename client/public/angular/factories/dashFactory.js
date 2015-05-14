@@ -16,7 +16,7 @@ angular.module('dashFactory', [])
 		},
 		createCollaboration: function(user_id, sender_id){
 			return $http.post('http://localhost:8080/collaborators', {recipientId: user_id, senderId: sender_id})
-		}
+		},
 		declineCollaboration: function(user_id, sender_id) {
 			return $http.delete('http://localhost:8080/collaborators', {recipientId: user_id, senderId: sender_id})
 		}

@@ -75,11 +75,11 @@ angular.module('dashController', [])
   userData.getAllUsers()
   .success(function(data){
     console.log('success')
-    var userData = data 
-    $scope.users = []
+    var userData = data;
+    $scope.users = [];
     userData.forEach(function(user){
       if (user._id != $scope.currentUserId){
-        $scope.users.push(user)
+        $scope.users.push(user);
       }
     })
   })

@@ -2,14 +2,16 @@ var mongoose = require('mongoose');
 
 var requestSchema = mongoose.Schema({
   created: Date,
-  requestSender: [{
+  requestSender: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  }],
-  requestRecipient: [{
+    ref: 'User'
+  },
+  requestRecipient: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  }],
+    ref: 'User'
+  },
+  senderName: String,
+  recipientName: String,
   resolved: Boolean
 });
 

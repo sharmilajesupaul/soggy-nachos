@@ -19,6 +19,10 @@ var userSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Request'
   }],
+  requestsSent: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Request'
+  }],
   projects: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Project'
