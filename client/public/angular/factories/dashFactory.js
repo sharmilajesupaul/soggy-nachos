@@ -1,21 +1,24 @@
 angular.module('dashFactory', [])
 
-.factory('friends', ['$http', function($http){
+.factory('collaborators', ['$http', function($http){
 	return {
-		sendRequest: function(requesting_id, requested_id){
-			return $http.post('http://localhost:3000/friend_requests', {requesting_user_id: requesting_id, requested_user_id: requested_id})
+		sendRequest: function(sender_id, recipient_id){
+			return $http.post('http://localhost:8080/requests', {senderId: sender_id, recipientId: recipient_id})
 		},
-		getRequests: function(requested_id){
-			return $http.get('http://localhost:3000/friend_requests/'+requested_id)
+		getRequests: function(recipient_id){
+			return $http.get('http://localhost:8080/requests/'+recipient_id)
 		},
-		getSentRequests: function(requesting_id){
-			return $http.get('http://localhost:3000/friend_requests_sent/'+requesting_id)
+		getSentRequests: function(sender_id){
+			return $http.get('http://localhost:8080/requests_sent/'+sender_id)
 		},
-		getFriends: function(user_id){
-			return $http.get('http://localhost:3000/friendships/'+user_id)
+		getCollaborations: function(user_id){
+			return $http.get('http://localhost:8080/collaborators/'+user_id)
 		},
-		createFriendship: function(user_id, friend_id){
-			return $http.post('http://localhost:3000/friendships', {user_id: user_id, friend_id: friend_id})
+		createCollaboration: function(user_id, sender_id){
+			return $http.post('http://localhost:8080/collaborators', {recipientId: user_id, senderId: sender_id})
+		}
+		declineCollaboration: function(user_id, sender_id) {
+			return $http.delete('http://localhost:8080/collaborators', {recipientId: user_id, senderId: sender_id})
 		}
 	}
 }])
@@ -23,7 +26,7 @@ angular.module('dashFactory', [])
 .factory('userData', ['$http', function($http){
 	return {
 		getAllUsers: function(){
-			return $http.get('http://localhost:3000/users')
+			return $http.get('http://localhost:8080/users')
 		}
 	}
 }])

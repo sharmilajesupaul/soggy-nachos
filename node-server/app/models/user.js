@@ -10,7 +10,7 @@ var userSchema = mongoose.Schema({
   skills: Array,
   location: String,
   bio: String,
-  friends: [{
+  collaborators: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     unique: true
@@ -37,6 +37,9 @@ userSchema.index({
 });
 userSchema.index({
   skills: 1
+});
+userSchema.index({
+  collaborators: 1
 });
 
 // methods ======================

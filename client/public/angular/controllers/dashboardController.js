@@ -14,16 +14,16 @@ angular.module('dashController', [])
 
   }])
 
-.controller('FeedCtrl', ['$scope', '$localStorage', '$http', 'friends', 'userData', function($scope, $localStorage, $http, friends, userData){
+.controller('FeedCtrl', ['$scope', '$localStorage', '$http', 'collaborators', 'userData', function($scope, $localStorage, $http, collaborators, userData){
 
-  currentUserId = $localStorage.user.id
+  $scope.currentUserId = $localStorage.user._id
 
-  $scope.sendFriendRequest = function(requestedUser) {
-    friends.sendRequest(currentUserId, requestedUser.id)
+  $scope.sendCollaborationRequest = function(requestedUser) {
+    collaborators.sendRequest($scope.currentUserId, requestedUser._id)
     .success(function(data){
       // var alreadyRequested = false
       // $scope.requestsSent.forEach(function(request){
-      //   if (request.id == requestedUser.id) {
+      //   if (request._id == requestedUser._id) {
       //     alreadyRequested = true
       //   }
       // })
@@ -43,17 +43,17 @@ angular.module('dashController', [])
   }
 
   $scope.confirmRequest = function(request) {
-    friends.createFriendship(currentUserId, request.id)
+    collaborators.createCollaboration($scope.currentUserId, request._id)
     .success(function(data){
       $scope.removeRequest(request)
-      var alreadyFriend = false
-      $scope.friends.forEach(function(friend){
-        if (friend.id == request.id) {
-          alreadyFriend = true
+      var alreadyCollaborators = false
+      $scope.collaborators.forEach(function(collaborator){
+        if (collaborator._id == request._id) {
+          alreadyCollaborators = true
         }
       })
-      if (alreadyFriend == false) {
-        $scope.friends.push(request)
+      if (alreadyCollaborators == false) {
+        $scope.collaborators.push(request)
       }
       console.log(data)
     })
@@ -62,11 +62,11 @@ angular.module('dashController', [])
     })
   }
 
-  friends.getFriends(currentUserId)
+  collaborators.getCollaborations($scope.currentUserId)
   .success(function(data){
     console.log('success')
-    console.log('friends: ', data)
-    $scope.friends = data
+    console.log('collaborators: ', data)
+    $scope.collaborators = data
   })
   .error(function(data, status){
     console.log(status)
@@ -78,7 +78,7 @@ angular.module('dashController', [])
     var userData = data 
     $scope.users = []
     userData.forEach(function(user){
-      if (user.id != currentUserId){
+      if (user._id != $scope.currentUserId){
         $scope.users.push(user)
       }
     })
@@ -88,7 +88,7 @@ angular.module('dashController', [])
     console.log(status)
   });
 
-  friends.getRequests(currentUserId)
+  collaborators.getRequests($scope.currentUserId)
   .success(function(data){
     $scope.requestsReceived = data
     console.log('success')
@@ -99,7 +99,7 @@ angular.module('dashController', [])
     console.log(status)
   })
 
-  friends.getSentRequests(currentUserId)
+  collaborators.getSentRequests($scope.currentUserId)
   .success(function(data){
     $scope.requestsSent = data
     console.log('success')
