@@ -21,10 +21,10 @@ angular.module('userFactory', [])
 .factory('authFactory', ['$http', '$localStorage', '$location', 'authenticationCheck', function($http, $localStorage, $location, authenticationCheck) {
   return {
     signup: function(user) {
-      return $http.post('http://127.0.0.1:8080/signup', user);
+      return $http.post('http://localhost:8080/signup', user);
     },
     login: function(user) {
-      return $http.post('http://127.0.0.1:8080/login', user);
+      return $http.post('http://localhost:8080/login', user);
     },
     logout: function() {
       if (authenticationCheck.check) {
