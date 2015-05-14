@@ -24,20 +24,37 @@ module.exports = function(app) {
         return res.status(400).send('no recipient found');
       }
       recipient = user;
-      var request = new Request({
+      Request.find({
+        $or: [{
+          requestSender: sender._id,
+          requestRecipient: recipient._id
+        }, {
+          requestSender: recipient._id,
+          requestRecipient: sender._id
+        }],
+        resolved: {
+          $ne: true
+        }
+      }).exec(f.slot())
+    }, function(request) {
+      if (request.length > 0 || recipient.collaborators.indexOf(sender._id) > -1) {
+        return res.status(400).send('users are already friends or has a pending request to this user')
+      }
+      request = new Request({
         requestSender: sender._id,
-        requestRecipient: recipient._id
+        requestRecipient: recipient._id,
+        senderName: sender.name,
+        recipientName: recipient.name
       });
-      request.save(f.slot());
-    }, function(request){
-      sender.requests.addToSet(request._id);
+      request.save(f.wait());
+      sender.requestsSent.addToSet(request._id);
       recipient.requests.addToSet(request._id);
       sender.save(f.wait());
       recipient.save(f.wait());
     }).onError(function(err){
-      res.send(err);
+      console.log(err.stack);
     }).onSuccess(function(){
-      res.status(200).send('completed');
+      console.log('completed');
     });
   });
 
@@ -78,52 +95,56 @@ module.exports = function(app) {
     }, function() {
       var senderIndex = sender.requests.indexOf(request._id);
       var recipientIndex = recipient.requests.indexOf(request._id);
-      sender.requests.splice(senderIndex, 1);
+      sender.requestsSent.splice(senderIndex, 1);
       recipient.requests.splice(recipientIndex, 1);
       request.resolved = true;
       sender.save(f.wait());
       recipient.save(f.wait());
       request.save(f.wait());
     }).onError(function(err) {
-      res.send(err);
+      res.send(err.stack);
     }).onSuccess(function() {
       res.status(200).send('completed');
     })
   });
 
   app.get('/requests/:recipientId', function(req, res){
-    var recipient;
     var f = ff(function(){
-      Request.find({
-        recipientId: req.params.recipientId
-      }).exec(f.slot());
-    }, function(requests){
-      if (!requests) {
-        return res.status(400).send('no requests')
+      User.findOne({
+        _id: req.params.recipientId
+      }).populate('requests').exec(f.slot())
+    }, function(user) {
+      if (!user) {
+        return res.status(400).send('no user found');
       }
-      res.send(requests)
+      if (user.requests.length < 1) {
+        return res.send([])
+      }
+      res.send(user.requests);
     }).onError(function(err){
-      res.send(err);
+      console.log(err.stack);
     }).onSuccess(function(){
-      res.status(200).send('completed');
+      console.log('completed');
     });
   });
 
   app.get('/requests_sent/:senderId', function(req, res){
-  var recipient;
-  var f = ff(function(){
-    Request.find({
-      recipientId: req.params.recipientId
-    }).exec(f.slot());
-  }, function(requests){
-    if (!requests) {
-      return res.status(400).send('no requests')
-    }
-    res.send(requests)
-  }).onError(function(err){
-    res.send(err);
-  }).onSuccess(function(){
-    res.status(200).send('completed');
-  });
-});
+    var f = ff(function(){
+      User.findOne({
+        _id: req.params.senderId
+      }).populate('requestsSent').exec(f.slot())
+    }, function(user) {
+      if (!user) {
+        return res.status(400).send('no user found');
+      }
+      if (user.requestsSent.length < 1) {
+        return res.send([])
+      }
+      res.send(user.requestsSent);
+    }).onError(function(err){
+      console.log(err.stack);
+    }).onSuccess(function(){
+      console.log('completed');
+    });
+  })
 }

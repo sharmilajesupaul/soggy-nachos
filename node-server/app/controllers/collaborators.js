@@ -7,18 +7,18 @@ module.exports = function(app) {
   app.get('/collaborators/:userId', function(req, res) {
     var f = ff(function(){
       User.find({
-        collaborators: req.body.userId
+        collaborators: req.params.userId
       }).exec(f.slot());
     }, function(collaborators) {
       if (!collaborators) {
-        return res.status(400).send('no users found');
+        return res.send({});
       }
       res.send(collaborators)
 
     }).onError(function(err){
-      res.send(err);
+      console.log(err);
     }).onSuccess(function(){
-      res.status(200).send('completed');
+      console.log('completed');
     });
   });
 
@@ -59,9 +59,9 @@ module.exports = function(app) {
     }, function() {
       sender.collaborators.addToSet(recipient._id)
       recipient.collaborators.addToSet(sender._id)
-      var senderIndex = sender.requests.indexOf(request._id);
+      var senderIndex = sender.requestsSent.indexOf(request._id);
       var recipientIndex = recipient.requests.indexOf(request._id);
-      sender.requests.splice(senderIndex, 1);
+      sender.requestsSent.splice(senderIndex, 1);
       recipient.requests.splice(recipientIndex, 1);
       request.resolved = true;
       sender.save(f.wait());
