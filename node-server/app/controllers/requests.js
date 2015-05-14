@@ -9,7 +9,7 @@ module.exports = function(app) {
     var recipient;
     var f = ff(function(){
       User.findOne({
-        _id: req.body.userId
+        _id: req.body.senderId
       }).exec(f.slot());
     }, function(user) {
       if (!user) {
