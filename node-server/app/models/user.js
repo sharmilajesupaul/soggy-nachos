@@ -9,12 +9,34 @@ var userSchema = mongoose.Schema({
   updated: Date,
   skills: Array,
   location: String,
-  bio: String
+  bio: String,
+  friends: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    unique: true
+  }],
+  requests: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Request'
+  }],
+  projects: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Project'
+  }]
 });
 
 // sets a hashed _id
 userSchema.index({
   _id: 'hashed'
+});
+userSchema.index({
+  projects: 1
+});
+userSchema.index({
+  location: 1
+});
+userSchema.index({
+  skills: 1
 });
 
 // methods ======================
@@ -26,6 +48,7 @@ userSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
+// pre-save hook ================
 userSchema.pre('save', function(next) {
   now = new Date();
   this.updated = now;
