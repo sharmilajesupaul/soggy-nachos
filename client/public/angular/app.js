@@ -8,6 +8,7 @@ angular.module('soggyNachos', ['firebase',
                                'dashController',
                                'themeConfig',
                                'userFactory',
+                               'dashFactory',
                                'userRoutes',
                                'dashRoutes'])
 

@@ -28,7 +28,7 @@ angular.module('userFactory', [])
     },
     logout: function() {
       if (authenticationCheck.check) {
-        authenticationCheck.check = false;
+        // authenticationCheck.check = false;
 
         delete $localStorage.user;
 
