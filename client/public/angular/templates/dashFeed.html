@@ -47,7 +47,9 @@
         <md-item ng-repeat="request in requestsReceived">
           <md-item-content>
             <div class="md-tile-left">
-              <h3>{{request.senderName}} <a href ng-click="confirmRequest(request)">Confirm Collaboration</a></h3>
+              <h3>{{request.senderName}}</h3>
+              <a href ng-click="confirmRequest(request)">Confirm Collaboration</a>
+              <a href ng-click="declineCollaboration(request)">Decline Collaboration</a>
               <!-- <img ng-src="{{message.face}}" class="face" alt="{{message.who}}"> -->
             </div>
             <div class="md-tile-content">
