@@ -6,7 +6,7 @@ angular.module('dashFactory', [])
       return $http.post('http://localhost:8080/requests', {
         senderId: sender_id,
         recipientId: recipient_id
-      })
+      });
     },
     getRequests: function(recipient_id) {
       return $http.get('http://localhost:8080/requests/' + recipient_id);
@@ -21,15 +21,15 @@ angular.module('dashFactory', [])
       return $http.post('http://localhost:8080/collaborators', {
         recipientId: user_id,
         senderId: sender_id
-      })
+      });
     },
     declineCollaboration: function(user_id, sender_id) {
       return $http.delete('http://localhost:8080/collaborators', {
         recipientId: user_id,
         senderId: sender_id
-      })
+      });
     }
-  }
+  };
 }])
 
 .factory('userData', ['$http', function($http) {

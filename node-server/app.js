@@ -54,7 +54,7 @@ fs.readdirSync(__dirname + '/app/models').forEach(function(filename) {
 });
 
 // routes ==================================================
-require('./app/controllers/routes')(app); // configure our routes
+require('./app/controllers/routes')(app);
 
 // start app ===============================================
 app.listen(port);
