@@ -9,19 +9,23 @@ angular.module('authController', [])
     $scope.defaultSkills = ['javascript',
       'ruby',
       'python',
+      'django',
       'PHP',
       'scala',
       'HTML5',
       'CSS3',
       'swift',
+      'C',
       'C#',
       'C++',
-      'Java',
+      'java',
       'angularjs',
       'emberjs',
       'backbonejs',
       'nodejs',
-      'sql'
+      'reactjs',
+      'sql',
+      'nosql'
     ];
 
     $scope.profileData = {

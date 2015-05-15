@@ -21,15 +21,7 @@ angular.module('dashController', [])
   $scope.sendCollaborationRequest = function(requestedUser) {
     collaborators.sendRequest($scope.currentUserId, requestedUser._id)
       .success(function(data) {
-        // var alreadyRequested = false
-        // $scope.requestsSent.forEach(function(request){
-        //   if (request._id == requestedUser._id) {
-        //     alreadyRequested = true
-        //   }
-        // })
-        // if (alreadyRequested == false){
-        //   $scope.requestsSent.push(requestedUser)
-        // }
+        $scope.requestsSent.push(requestedUser);
         console.log(data);
       })
       .error(function(data, status) {
