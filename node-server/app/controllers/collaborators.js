@@ -5,7 +5,7 @@ var ff = require('ff');
 module.exports = function(app) {
 
   app.get('/collaborators/:userId', function(req, res) {
-    var f = ff(function(){
+    var f = ff(function() {
       User.find({
         collaborators: req.params.userId
       }).exec(f.slot());
@@ -13,16 +13,16 @@ module.exports = function(app) {
       if (!collaborators) {
         return res.send({});
       }
-      res.send(collaborators)
+      res.send(collaborators);
 
-    }).onError(function(err){
+    }).onError(function(err) {
       console.log(err);
-    }).onSuccess(function(){
+    }).onSuccess(function() {
       console.log('completed');
     });
   });
 
-  app.post('/collaborators',function(req, res){
+  app.post('/collaborators', function(req, res) {
     var recipient;
     var sender;
     var request;
@@ -57,8 +57,8 @@ module.exports = function(app) {
       }
       request = doc;
     }, function() {
-      sender.collaborators.addToSet(recipient._id)
-      recipient.collaborators.addToSet(sender._id)
+      sender.collaborators.addToSet(recipient._id);
+      recipient.collaborators.addToSet(sender._id);
       var senderIndex = sender.requestsSent.indexOf(request._id);
       var recipientIndex = recipient.requests.indexOf(request._id);
       sender.requestsSent.splice(senderIndex, 1);
@@ -71,7 +71,6 @@ module.exports = function(app) {
       res.send(err);
     }).onSuccess(function() {
       res.status(200).send('completed');
-    })
+    });
   });
-
-}
+};

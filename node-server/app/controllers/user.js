@@ -5,13 +5,13 @@ var ff = require('ff');
 
 module.exports = function(app) {
 
-  app.get('/users', function(req, res){
-    var f = ff(function(){
-      User.find({}).exec(f.slot())
-    }, function(users){
-      return res.send(users)
-    })
-  })
+  app.get('/users', function(req, res) {
+    var f = ff(function() {
+      User.find({}).exec(f.slot());
+    }, function(users) {
+      return res.send(users);
+    });
+  });
 
   app.delete('/users/:userId', function(req, res) {
     User.remove({
@@ -24,26 +24,26 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/users/:userId/projects',function(req, res){
-    var f = ff(function(){
+  app.get('/users/:userId/projects', function(req, res) {
+    var f = ff(function() {
       User.findOne({
         _id: req.params.userId
       }).exec(f.slot());
-    }, function(user){
+    }, function(user) {
       if (!user) {
         return res.status(400).send('no user found');
       }
       Project.find({
         contributers: user._id
       }).exec(f.slot());
-    }, function(projects){
+    }, function(projects) {
       if (!projects) {
         return res.send({});
       }
       res.send(projects);
-    }).onError(function(err){
+    }).onError(function(err) {
       res.send(err);
-    }).onSuccess(function(){
+    }).onSuccess(function() {
       console.log('success fetching user projects');
     });
   });
