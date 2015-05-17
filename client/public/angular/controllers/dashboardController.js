@@ -35,12 +35,12 @@ angular.module('dashController', [])
   };
 
   $scope.confirmRequest = function(request) {
-    collaborators.createCollaboration($scope.currentUserId, request._id)
+    collaborators.createCollaboration($scope.currentUserId, request.requestSender)
       .success(function(data) {
         $scope.removeRequest(request);
         var alreadyCollaborators = false;
         $scope.collaborators.forEach(function(collaborator) {
-          if (collaborator._id === request._id) {
+          if (collaborator._id === request.requestSender) {
             alreadyCollaborators = true;
           }
         });
@@ -54,10 +54,10 @@ angular.module('dashController', [])
       });
   };
 
-  $scope.declineCollaboration = function(sender) {
-    collaborators.declineCollaboration($scope.currentUserId, sender._id)
+  $scope.declineCollaboration = function(request) {
+    collaborators.declineCollaboration($scope.currentUserId, request.requestSender)
       .success(function(data) {
-        $scope.removeRequest(sender);
+        $scope.removeRequest(request);
       })
       .error(function(data, status) {
         console.log(status);
@@ -74,7 +74,7 @@ angular.module('dashController', [])
       console.log(status);
     });
 
-  userData.getAllUsers()
+  userData.getAllUsers($scope.currentUserId)
     .success(function(data) {
       console.log('success');
       var userData = data;

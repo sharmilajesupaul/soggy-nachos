@@ -102,9 +102,9 @@ module.exports = function(app) {
       recipient.save(f.wait());
       request.save(f.wait());
     }).onError(function(err) {
-      res.send(err.stack);
+      console.log(err.stack);
     }).onSuccess(function() {
-      res.status(200).send('completed');
+      console.log('completed');
     });
   });
 

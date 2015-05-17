@@ -12,7 +12,10 @@ var requestSchema = mongoose.Schema({
   },
   senderName: String,
   recipientName: String,
-  resolved: Boolean
+  resolved: {
+    type: Boolean,
+    default: false
+  }
 });
 
 requestSchema.index({

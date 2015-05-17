@@ -53,7 +53,7 @@ module.exports = function(app) {
       }).exec(f.slot());
     }, function(doc) {
       if (!doc) {
-        return res.status(400).send('no request found');
+        return console.log('no request found');
       }
       request = doc;
     }, function() {
@@ -68,9 +68,9 @@ module.exports = function(app) {
       recipient.save(f.wait());
       request.save(f.wait());
     }).onError(function(err) {
-      res.send(err);
+      console.log(err.stack);
     }).onSuccess(function() {
-      res.status(200).send('completed');
+      console.log('completed');
     });
   });
 };
