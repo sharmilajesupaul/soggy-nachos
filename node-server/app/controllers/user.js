@@ -7,10 +7,23 @@ module.exports = function(app) {
 
   app.get('/users', function(req, res) {
     var f = ff(function() {
-      User.find({}).exec(f.slot());
-    }, function(users) {
-      return res.send(users);
-    });
+        User.findOne({
+          _id: req.body.user
+        }).exec(f.slot());
+      }, function(user) {
+        if (!user) {
+          return res.status(400).send({});
+        }
+        User.find({
+          _id: {
+            $ne: user._id,
+            $nin: user.collaborations
+          }
+        }).exec(f.slot());
+      },
+      function(users) {
+        return res.send(users);
+      });
   });
 
   app.delete('/users/:userId', function(req, res) {
@@ -42,7 +55,7 @@ module.exports = function(app) {
       }
       res.send(projects);
     }).onError(function(err) {
-      res.send(err);
+      console.log(err);
     }).onSuccess(function() {
       console.log('success fetching user projects');
     });
