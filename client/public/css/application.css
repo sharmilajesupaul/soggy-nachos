@@ -3,6 +3,11 @@
   color: rgba(170, 124, 124, 0.87);
 }
 
+.error{
+  text-align: left;
+  color: rgb(187, 5, 5);
+  font-size: x-small;
+}
 
 .icon-header {
   display: block;
