@@ -74,7 +74,7 @@ angular.module('dashController', [])
       console.log(status);
     });
 
-  userData.getAllUsers($scope.currentUserId)
+  userData.findMatches($scope.currentUserId)
     .success(function(data) {
       console.log('success');
       var userData = data;

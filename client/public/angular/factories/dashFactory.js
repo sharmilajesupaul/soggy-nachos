@@ -31,8 +31,12 @@ angular.module('dashFactory', [])
 
 .factory('userData', ['$http', function($http) {
   return {
-    getAllUsers: function(user) {
-      return $http.get('http://localhost:8080/users/' + user);
+    findMatches: function(user, skills) {
+      if (!skills) {
+        return $http.get('http://localhost:8080/matches/' + user);
+      } else {
+        return $http.get('http://localhost:8080/matches/' + user + '?skills=' + JSON.stringify(skills));
+      }
     }
   };
 }]);
