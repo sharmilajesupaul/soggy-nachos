@@ -11,9 +11,10 @@ var userSchema = mongoose.Schema({
   created: Date,
   updated: Date,
   skills: Array,
-  location: String,
+  location: String, // formatted like: "San Francisco, CA" -- will be using this to calculate geolocation to find nearby matches
   bio: String,
   remote: Boolean,
+  profilePicture: String,
   collaborators: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

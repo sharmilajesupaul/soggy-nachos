@@ -17,7 +17,9 @@ var projectSchema = mongoose.Schema({
   }],
   activeProject: Boolean,
   helpWanted: Boolean,
-  technologies: Array
+  technologies: Array,
+  created: Date,
+  updated: Date
 });
 
 projectSchema.index({
@@ -31,6 +33,15 @@ projectSchema.index({
 });
 projectSchema.index({
   helpWanted: 1
+});
+
+projectSchema.pre('save', function(next) {
+  now = new Date();
+  this.updated = now;
+  if (!this.created) {
+    this.created = now;
+  }
+  next();
 });
 
 module.exports = mongoose.model('Project', projectSchema);
