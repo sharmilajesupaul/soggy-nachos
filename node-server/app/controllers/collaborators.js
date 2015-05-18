@@ -14,7 +14,6 @@ module.exports = function(app) {
         return res.send({});
       }
       res.send(collaborators);
-
     }).onError(function(err) {
       console.log(err);
     }).onSuccess(function() {

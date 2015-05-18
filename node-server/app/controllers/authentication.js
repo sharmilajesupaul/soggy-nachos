@@ -13,10 +13,7 @@ module.exports = function(app) {
       if (err) {
         return res.send(err);
       }
-      if (!user) {
-        return res.send(400);
-      }
-      if (!user.validPassword(req.body.password)) {
+      if (!user || !user.validPassword(req.body.password)) {
         return res.send(400);
       }
       res.send({
