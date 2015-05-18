@@ -10,7 +10,7 @@ var projectSchema = mongoose.Schema({
   respository: String,
   url: String,
   screenshot: String,
-  contributers: [{
+  contributors: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     unique: true
@@ -24,7 +24,7 @@ projectSchema.index({
   shortname: 1
 });
 projectSchema.index({
-  contributers: 1
+  contributors: 1
 });
 projectSchema.index({
   technologies: 1

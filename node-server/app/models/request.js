@@ -15,7 +15,11 @@ var requestSchema = mongoose.Schema({
   resolved: {
     type: Boolean,
     default: false
-  }
+  },
+  project: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Project'
+  },
 });
 
 requestSchema.index({

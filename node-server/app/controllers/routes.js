@@ -4,4 +4,5 @@ module.exports = function(app) {
   require('./requests')(app);
   require('./collaborators')(app);
   require('./matches')(app);
+  require('./projects')(app);
 };

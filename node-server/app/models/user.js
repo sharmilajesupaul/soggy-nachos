@@ -13,6 +13,7 @@ var userSchema = mongoose.Schema({
   skills: Array,
   location: String,
   bio: String,
+  remote: Boolean,
   collaborators: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

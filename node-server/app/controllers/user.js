@@ -26,7 +26,7 @@ module.exports = function(app) {
         return res.status(400).send('no user found');
       }
       Project.find({
-        contributers: user._id
+        contributors: user._id
       }).exec(f.slot());
     }, function(projects) {
       if (!projects) {

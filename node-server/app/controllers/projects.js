@@ -6,13 +6,43 @@ module.exports = function(app) {
 
   app.post('/projects', function(req, res) {
     var project = req.body.project;
-    // req.body.project should include name, shortname, description, respository, url, screenshot, contributers(array), activeProject(boolean), helpWanted(boolean), technologies(array)
+    // req.body.project should include name, shortname, description, respository, url, screenshot, contributors(array), activeProject(boolean), helpWanted(boolean), technologies(array)
     if (!project) {
       return res.send(400);
     }
     var f = ff(function() {
       var newProject = new Project(project);
       newProject.save(f.slot());
+    }).onError(function(err) {
+      console.log(err.stack);
+    }).onSuccess(function() {
+      console.log('success');
+    });
+  });
+
+  // add user to project
+  app.post('/projects/:projectId/add/:userId', function(req, res) {
+    var project;
+    var f = ff(function() {
+      Project.findOne({
+        _id: req.params.projectId
+      }).exec(f.slot());
+    }, function(doc) {
+      if (!doc) {
+        return res.send(400);
+      }
+      project = doc;
+      User.findOne({
+        _id: req.params.userId
+      }).exec(f.slot());
+    }, function(user) {
+      if (!user) {
+        return res.send(400);
+      }
+      project.contributors.addToSet(user._id);
+      user.projects.addToSet(project._id);
+      project.save(f.wait());
+      user.save(f.wait());
     }).onError(function(err) {
       console.log(err.stack);
     }).onSuccess(function() {
@@ -38,7 +68,7 @@ module.exports = function(app) {
   app.get('/projects/:userId', function(req, res) {
     var f = ff(function() {
       Project.find({
-        _id: req.params.userId
+        contributors: req.params.userId
       }).exec(f.slot());
     }, function(projects) {
       if (!projects) {
