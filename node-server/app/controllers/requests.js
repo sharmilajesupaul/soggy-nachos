@@ -101,8 +101,8 @@ module.exports = function(app) {
       sender.requestsSent.splice(senderRequestIndex, 1);
       recipient.requests.splice(recipientRequestIndex, 1);
 
-      var senderPendingIndex = sender.pendingRequests.indexOf(recipient._id);
-      var recipientPendingIndex = recipient.pendingRequests.indexOf(sender._id);
+      var senderPendingIndex = sender.pendingRequestUsers.indexOf(recipient._id);
+      var recipientPendingIndex = recipient.pendingRequestUsers.indexOf(sender._id);
       sender.requestsSent.splice(senderPendingIndex, 1);
       recipient.requests.splice(recipientPendingIndex, 1);
 
