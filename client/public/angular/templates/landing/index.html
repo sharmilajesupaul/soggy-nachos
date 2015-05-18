@@ -8,12 +8,13 @@
   </div>
 </div>
 <style>
-.large-header{
-  margin-top: 5%;
-}
+  .large-header{
+    margin-top: 5%;
+  }
   .sign-up-button{
     width: 35%;
     padding-top: 1%;
+    min-width: 220px;
     font-size: medium;
     color: rgb(59, 59, 59);
     padding-bottom: 1%;
@@ -27,6 +28,7 @@
   .log-in-button{
     width: 35%;
     padding-top: 1%;
+    min-width: 220px;
     color: rgb(59, 59, 59);
     font-size: medium;
     padding-bottom: 1%;
@@ -86,149 +88,3 @@
   to    { -webkit-transform: translateX(0); }
 }
 </style>
-
-<!-- <div ng-controller="LoginCtrl" id="loginCtrl" style="background: #252120;" layout-fill>
-  <md-toolbar class="md-tall md-accent md-hue-3">
-    <span flex></span>
-    <h2 class="md-toolbar-tools md-toolbar-tools-bottom">
-      <span class="md-flex">Soggy Nachos</span>
-    </h2>
-  </md-toolbar>
-
-  <div layout="row" class="landing-page" layout-fill>
-    <div flex layout-padding layout="column" layout-align="center center">
-      <md-content class="md-padding" layout-fill>
-        <md-tabs md-stretch-tabs="always" class="md-background md-hue-1" md-selected="tabData.selectedIndex">
-          <md-tab id="tab1" aria-controls="tab1-content" class="md-warn">
-            Login
-          </md-tab>
-          <md-tab id="tab2" aria-controls="tab2-content" class="md-warn">
-            Signup
-          </md-tab>
-        </md-tabs>
-
-        <ng-switch on="tabData.selectedIndex" class="tabpanel-container">
-          <div role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="nextTab()" md-swipe-right="previousTab()">
-            <form ng-submit="login()" name="loginForm" class="auth-form">
-              <md-input-container>
-                <label>Email</label>
-                <input type="email" name="email" ng-model="loginData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
-                <div ng-messages="loginForm.email.$error">
-                  <div ng-message="required">This is required.</div>
-                  <div ng-message="pattern">Please enter a valid email.</div>
-                </div>
-              </md-input-container>
-
-              <md-input-container>
-                <label>Password</label>
-                <input type='password' name="password" ng-model="loginData.password" pattern=".{6,}" required>
-                <div ng-messages="loginForm.password.$error">
-                  <div ng-message="required">This is required.</div>
-                  <div ng-message="pattern">Password too short.</div>
-                </div>
-              </md-input-container>
-              <div style="margin-top: 5%;">
-                <md-button type="submit" class="md-raised md-primary">Login</md-button>
-              </div>
-            </form>
-          </div>
-
-          <div ng-controller="LoginCtrl" role="tabpanel" id="tab2-content" aria-labelledby="tab2" ng-switch-when="1" md-swipe-left="nextTab()" md-swipe-right="previousTab()">
-
-            <md-tabs md-stretch-tabs="always" class="md" md-selected="tabData.signupTabIndex">
-              <md-tab id="signupTab1" aria-controls="signupTab1-content">
-                Basic
-              </md-tab>
-              <md-tab id="signupTab2" aria-controls="signupTab2-content">
-                Skills
-              </md-tab>
-              <md-tab id="signupTab3" aria-controls="signupTab3-content">
-                Personal Info
-              </md-tab>
-            </md-tabs>
-
-            <ng-switch on="tabData.signupTabIndex" class="tabpanel-container">
-              <form name="signupForm" class="auth-form" ng-submit="signup()">
-                <div role="tabpanel" id="signupTab1-content" aria-labelledby="signupTab1" ng-switch-when="0" md-swipe-left="nextTab('inner')" md-swipe-right="previousTab('inner')">
-
-                  <md-input-container>
-                    <label>Name</label>
-                    <input type="text" name="name" pattern=".{3,}" ng-model="userData.name" required/>
-                    <br/>
-                    <div ng-messages="signupForm.name.$error">
-                      <div ng-message="required">This is required.</div>
-                      <div ng-message="pattern">Name too short.</div>
-                    </div>
-                  </md-input-container>
-
-                  <md-input-container>
-                    <label>Email</label>
-                    <input type="email" name="email" ng-model="userData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
-                    <div ng-messages="signupForm.email.$error">
-                      <div ng-message="required">This is required.</div>
-                      <div ng-message="pattern">Please enter a valid email.</div>
-                    </div>
-                  </md-input-container>
-
-                  <md-input-container>
-                    <label>Password</label>
-                    <input type="password" pattern=".{6,}" name="password" ng-model="userData.password" required/>
-                    <div ng-messages="signupForm.password.$error">
-                      <div ng-message="required">This is required.</div>
-                      <div ng-message="pattern">Password too short.</div>
-                    </div>
-                  </md-input-container>
-                  <div class="md-padding" style="margin-top: 5%;">
-                    <md-button ng-click="nextTab('inner')" class="md-raised md-primary">Next <i class="fa fa-chevron-right"></i></md-button>
-                  </div>
-
-                </div>
-
-                <div role="tabpanel" id="signupTab2-content" aria-labelledby="signupTab2" ng-switch-when="1" md-swipe-left="nextTab('inner')" md-swipe-right="previousTab('inner')">
-                  <div layout="row" layout-wrap>
-                    <md-checkbox ng-repeat="skill in defaultSkills" class="checkbox-button" ng-model="skillData[skill]" aria-label="skills">
-                      <label>{{ skill | uppercase }}</label>
-                    </md-checkbox>
-                  </div>
-                  <div layout="row" layout-fill>
-                    <md-input-container style="width: 100%;">
-                      <label>Add New Skill</label>
-                      <input ng-enter="addSkill()" type="text" name="newSkill" ng-model="newSkill.name" md-maxlength="20" pattern="[a-zA-Z0-9]{2,}" required/>
-                      <div ng-messages="signupForm.newSkill.$error">
-                        <div ng-message="pattern">Invalid skill name, dumbass.</div>
-                        <div ng-message="required">This is fucking required.</div>
-                        <div ng-message="md-maxlength">This is a skill, not your fucking life story. Asshole. </div>
-                        <div ng-message="duplicate">This fucking skill already exists.</div>
-                      </div>
-                    </md-input-container>
-                    <a ng-click="addSkill()" class="md-primary">
-                      <i class="fa fa-plus fa-2x" style="color:beige;"></i>
-                    </a>
-                  </div>
-                  <div class="center md-padding" style="margin-top: 5%;">
-                    <md-button ng-click="nextTab('inner')" class="md-raised md-primary">Next<i class="fa fa-chevron-right"></i></md-button>
-                  </div>
-                </div>
-
-                <div role="tabpanel" id="signupTab3-content" aria-labelledby="signupTab3" ng-switch-when="2" md-swipe-left="nextTab('inner')" md-swipe-right="previousTab('inner')">
-                  <md-input-container>
-                    <label>Bio</label>
-                    <input type="textfield" name="bio" />
-                  </md-input-container>
-                  <md-input-container>
-                    <label>Location</label>
-                    <input type="textfield" name="location" />
-                  </md-input-container>
-                  <div class="md-padding" style="margin-top: 5%;">
-                    <md-button type="submit" class="md-raised md-primary">Sign-up</md-button>
-                  </div>
-                </div>
-              </form>
-            </ng-switch>
-          </div>
-        </ng-switch>
-      </md-content>
-    </div>
-  </div>
-</div>
- -->

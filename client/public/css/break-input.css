@@ -1,5 +1,19 @@
+@media only screen and (max-width: 480px)  {
+  .input__label{
+    margin-left: -50px;
+  }
 
-  .input {
+  .error {
+    margin-left: -50px;  
+  }
+
+  .login-button {
+    margin-left: -35px !important;
+  }
+}
+
+
+.input {
   position: relative;
   z-index: 1;
   display: inline-block;
@@ -80,7 +94,6 @@
   min-width: 220px;
   padding-top: 25px;
   padding-bottom: 20px;
-  margin-right: -25%;
   text-align: center;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
