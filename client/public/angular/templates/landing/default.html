@@ -1,9 +1,40 @@
 <div>
-  <div>
-  <md-button md-cols-md="2" class="sign-up-button md-button-raised" ui-sref="landing.signup">Sign Up</md-button>
+  <div class="row">
+  <button class="sign-up-button btn" ui-sref="landing.signup">Sign Up</button>
   </div>
-  <div>
-    <md-button class="log-in-button" ui-sref="landing.login">Login</md-button>
+  <div class="row">
+    <button class="log-in-button btn" ui-sref="landing.login">Login</button>
   </div>
 </div>
+
+<style>
+  .sign-up-button{
+    width: 35%;
+    padding-top: 2vh;
+    min-width: 220px;
+    margin-bottom: 20px;
+    font-size: medium;
+    color: rgb(59, 59, 59);
+    padding-bottom: 2vh;
+    background-color: rgb(143, 228, 168);
+  }
+
+  .sign-up-button:hover{
+    background-color: rgb(67, 212, 127) !important;
+  }
+
+  .log-in-button{
+    width: 35%;
+    padding-top: 2vh;
+    min-width: 220px;
+    color: rgb(59, 59, 59);
+    font-size: medium;
+    padding-bottom: 2vh;
+    background-color: rgb(142, 189, 231);
+  }
+
+  .log-in-button:hover{
+    background-color: rgb(77, 164, 241) !important;
+  }
+</style>
 

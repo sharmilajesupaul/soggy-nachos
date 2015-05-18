@@ -15,7 +15,7 @@
 
     <div class="form-group">
       <span class="input input-break">
-        <input class="input__field input__field-break" type='password' name="password" ng-model="loginData.password" pattern=".{6,}" required>
+        <input class="input__field input__field-break" type='password' name="password" ng-model="loginData.password" pattern=".{6,}" id="input-8" required>
         <label class="input__label input__label-break" for="input-8">
           <span class="input__label-content input__label-content-break">Password</span>
         </label>
@@ -47,6 +47,10 @@
     padding-bottom: 10px;
     margin-left: auto;
     background: rgb(143, 228, 168);
+  }
+
+  .login-button:hover{
+    background: rgb(90, 217, 128);
   }
 
 </style>

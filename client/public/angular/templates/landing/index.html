@@ -1,7 +1,7 @@
 <div ng-controller="LoginCtrl" id="loginCtrl" style="">
   <div class="large-header">
     <img class="icon-header" src="../img/workspace.png" alt="" />
-    <h1 class="md-display-3 title">
+    <h1 class="title">
       Soggy Nachos
     </h1>
     <div id="form-views" ui-view></div>
@@ -11,34 +11,6 @@
   .large-header{
     margin-top: 5%;
   }
-  .sign-up-button{
-    width: 35%;
-    padding-top: 1%;
-    min-width: 220px;
-    font-size: medium;
-    color: rgb(59, 59, 59);
-    padding-bottom: 1%;
-    background-color: rgb(143, 228, 168);
-  }
-
-  .sign-up-button:hover{
-    background-color: rgb(67, 212, 127) !important;
-  }
-
-  .log-in-button{
-    width: 35%;
-    padding-top: 1%;
-    min-width: 220px;
-    color: rgb(59, 59, 59);
-    font-size: medium;
-    padding-bottom: 1%;
-    background-color: rgb(142, 189, 231);
-  }
-
-  .log-in-button:hover{
-    background-color: rgb(77, 164, 241) !important;
-  }
-
 
 /* basic styling for entering and leaving */
 /* left and right added to ensure full width */
@@ -46,7 +18,7 @@
 #form-views.ng-leave      { position:absolute; left:30px; right:30px;
     transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease; 
 }
-    
+
 /* enter animation */
 #form-views.ng-enter            { 
     -webkit-animation:slideInRight 0.5s both ease;
