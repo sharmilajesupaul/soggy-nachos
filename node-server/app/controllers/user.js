@@ -14,10 +14,11 @@ module.exports = function(app) {
       if (!user) {
         return res.status(400).send({});
       }
+      var alreadyConnected = user.collaborators.concat(user.pendingRequestUsers);
       User.find({
         _id: {
           $ne: user._id,
-          $nin: user.collaborators
+          $nin: alreadyConnected
         }
       }).exec(f.slot());
     }, function(users) {

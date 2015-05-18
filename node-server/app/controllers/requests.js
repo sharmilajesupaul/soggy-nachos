@@ -49,6 +49,8 @@ module.exports = function(app) {
       request.save(f.wait());
       sender.requestsSent.addToSet(request._id);
       recipient.requests.addToSet(request._id);
+      sender.pendingRequestUsers.addToSet(recipient._id);
+      recipient.pendingRequestUsers.addToSet(sender._id);
       sender.save(f.wait());
       recipient.save(f.wait());
     }).onError(function(err) {
@@ -93,11 +95,19 @@ module.exports = function(app) {
       }
       request = doc;
     }, function() {
-      var senderIndex = sender.requests.indexOf(request._id);
-      var recipientIndex = recipient.requests.indexOf(request._id);
-      sender.requestsSent.splice(senderIndex, 1);
-      recipient.requests.splice(recipientIndex, 1);
+
+      var senderRequestIndex = sender.requestsSent.indexOf(request._id);
+      var recipientRequestIndex = recipient.requests.indexOf(request._id);
+      sender.requestsSent.splice(senderRequestIndex, 1);
+      recipient.requests.splice(recipientRequestIndex, 1);
+
+      var senderPendingIndex = sender.pendingRequests.indexOf(recipient._id);
+      var recipientPendingIndex = recipient.pendingRequests.indexOf(sender._id);
+      sender.requestsSent.splice(senderPendingIndex, 1);
+      recipient.requests.splice(recipientPendingIndex, 1);
+
       request.resolved = true;
+
       sender.save(f.wait());
       recipient.save(f.wait());
       request.save(f.wait());

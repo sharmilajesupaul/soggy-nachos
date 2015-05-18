@@ -2,7 +2,10 @@ var mongoose = require('mongoose');
 
 var projectSchema = mongoose.Schema({
   name: String,
-  shortname: String, // shortname should be a string with no spaces or special characters to potentially be used in urls as query param
+  shortname: {
+    type: String,
+    unique: true
+  }, // shortname should be a string with no spaces or special characters to potentially be used in urls as query param
   description: String,
   respository: String,
   url: String,
