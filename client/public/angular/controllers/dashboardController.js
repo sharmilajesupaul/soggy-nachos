@@ -55,7 +55,7 @@ angular.module('dashController', [])
   };
 
   $scope.declineCollaboration = function(request) {
-    collaborators.declineCollaboration($scope.currentUserId, request.requestSender)
+    collaborators.declineCollaboration(request._id)
       .success(function(data) {
         $scope.removeRequest(request);
       })
@@ -94,7 +94,6 @@ angular.module('dashController', [])
     .success(function(data) {
       $scope.requestsReceived = data;
       console.log('success');
-      console.log(data);
     })
     .error(function(data, status) {
       console.log('failure');
@@ -105,7 +104,6 @@ angular.module('dashController', [])
     .success(function(data) {
       $scope.requestsSent = data;
       console.log('success');
-      console.log(data);
     })
     .error(function(data, status) {
       console.log('failure');

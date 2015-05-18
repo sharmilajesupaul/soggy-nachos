@@ -2,12 +2,21 @@ var mongoose = require('mongoose');
 
 var projectSchema = mongoose.Schema({
   name: String,
-  shortname: String, // shortname should be a string with no spaces or special characters to potentially be used in urls as query param
+  shortname: {
+    type: String,
+    unique: true
+  }, // shortname should be a string with no spaces or special characters to potentially be used in urls as query param
+  description: String,
+  respository: String,
+  url: String,
+  screenshot: String,
   contributers: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     unique: true
   }],
+  activeProject: Boolean,
+  helpWanted: Boolean,
   technologies: Array
 });
 
@@ -19,6 +28,9 @@ projectSchema.index({
 });
 projectSchema.index({
   technologies: 1
+});
+projectSchema.index({
+  helpWanted: 1
 });
 
 module.exports = mongoose.model('Project', projectSchema);

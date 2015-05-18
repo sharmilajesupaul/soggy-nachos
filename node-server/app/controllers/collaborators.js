@@ -59,11 +59,15 @@ module.exports = function(app) {
     }, function() {
       sender.collaborators.addToSet(recipient._id);
       recipient.collaborators.addToSet(sender._id);
-      var senderIndex = sender.requestsSent.indexOf(request._id);
-      var recipientIndex = recipient.requests.indexOf(request._id);
-      sender.requestsSent.splice(senderIndex, 1);
-      recipient.requests.splice(recipientIndex, 1);
+
+      sender.requestsSent.pull(request._id);
+      recipient.requests.pull(request._id);
+
+      sender.pendingRequestUsers.pull(recipient._id);
+      recipient.pendingRequestUsers.pull(sender._id);
+
       request.resolved = true;
+
       sender.save(f.wait());
       recipient.save(f.wait());
       request.save(f.wait());
