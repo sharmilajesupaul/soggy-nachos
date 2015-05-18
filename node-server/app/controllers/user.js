@@ -12,7 +12,7 @@ module.exports = function(app) {
         }).exec(f.slot());
       }, function(user) {
         if (!user) {
-          return res.status(400).send({});
+          return res.send({});
         }
         User.find({
           _id: {
