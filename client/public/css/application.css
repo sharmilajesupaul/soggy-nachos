@@ -2,6 +2,19 @@
   /*height: 100%;*/
   color: rgba(170, 124, 124, 0.87);
 }
+
+
+.icon-header {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.large-header {
+  text-align: center;
+}
+
+
 .landing-page {
   background-color: #252120;
 }

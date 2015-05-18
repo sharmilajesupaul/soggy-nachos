@@ -1,4 +1,49 @@
-<div ng-controller="LoginCtrl" id="loginCtrl" style="background: #252120;" layout-fill>
+<div ng-controller="LoginCtrl" id="loginCtrl" style="" layout-fill>
+  <div class="large-header">
+    <img class="icon-header" src="../img/workspace.png" alt="" />
+    <h1 class="md-display-3 title">
+      Soggy Nachos
+    </h1>
+    <div>
+      <md-button md-cols-md="2" class="sign-up-button md-button-raised">Sign Up</md-button>
+      <md-button class="log-in-button">Login</md-button>
+    </div>
+  </div>
+
+</div>
+
+<style>
+.large-header{
+  margin-top: 25%;
+}
+  .sign-up-button{
+    width: 35%;
+    padding-top: 1%;
+    font-size: medium;
+    color: rgb(59, 59, 59);
+    padding-bottom: 1%;
+    background-color: rgb(143, 228, 168);
+  }
+
+  .sign-up-button:hover{
+    background-color: rgb(67, 212, 127) !important;
+  }
+
+  .log-in-button{
+    width: 35%;
+    padding-top: 1%;
+    color: rgb(59, 59, 59);
+    font-size: medium;
+    padding-bottom: 1%;
+    background-color: rgb(142, 189, 231);
+  }
+
+  .log-in-button:hover{
+    background-color: rgb(77, 164, 241) !important;
+  }
+</style>
+
+<!-- <div ng-controller="LoginCtrl" id="loginCtrl" style="background: #252120;" layout-fill>
   <md-toolbar class="md-tall md-accent md-hue-3">
     <span flex></span>
     <h2 class="md-toolbar-tools md-toolbar-tools-bottom">
@@ -142,3 +187,4 @@
     </div>
   </div>
 </div>
+ -->
