@@ -1,3 +1,8 @@
 module.exports = {
-  url: 'mongodb://localhost/soggy-nachos'
+  development: {
+    mongo: 'mongodb://localhost/soggy-nachos'
+  },
+  production: {
+    mongo: 'mongodb://soggynacho:burrito@ds034878.mongolab.com:34878/soggynachos'
+  }
 };
