@@ -35,9 +35,7 @@ angular.module('dashFactory', [])
 .factory('userData', ['$http', function($http) {
   return {
     getAllUsers: function(user) {
-      return $http.get('http://localhost:8080/users', {
-        user: user
-      });
+      return $http.get('http://localhost:8080/users/' + user);
     }
   };
 }]);

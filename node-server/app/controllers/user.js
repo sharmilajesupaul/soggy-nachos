@@ -5,10 +5,10 @@ var ff = require('ff');
 
 module.exports = function(app) {
 
-  app.get('/users', function(req, res) {
+  app.get('/users/:userId', function(req, res) {
     var f = ff(function() {
       User.findOne({
-        _id: req.body.user
+        _id: req.params.userId
       }).exec(f.slot());
     }, function(user) {
       if (!user) {
@@ -17,11 +17,15 @@ module.exports = function(app) {
       User.find({
         _id: {
           $ne: user._id,
-          $nin: user.collaborations
+          $nin: user.collaborators
         }
       }).exec(f.slot());
     }, function(users) {
-      res.send(users);
+      if (!users) {
+        res.send({});
+      } else {
+        res.send(users);
+      }
     }).onError(function(err) {
       console.log(err.stack);
     }).onSuccess(function() {

@@ -94,7 +94,6 @@ angular.module('dashController', [])
     .success(function(data) {
       $scope.requestsReceived = data;
       console.log('success');
-      console.log(data);
     })
     .error(function(data, status) {
       console.log('failure');
@@ -105,7 +104,6 @@ angular.module('dashController', [])
     .success(function(data) {
       $scope.requestsSent = data;
       console.log('success');
-      console.log(data);
     })
     .error(function(data, status) {
       console.log('failure');
