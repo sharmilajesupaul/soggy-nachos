@@ -1,36 +1,8 @@
 <div class="signup-form-partial">
-   <tabset justified="true">
-    
+   <tabset justified="true" type="pills">
     <tab>
       <tab-heading>Basic</tab-heading>
-      
-    </tab>
-    
-    <tab>
-      <tab-heading>Skills</tab-heading>
-    </tab>
-
-    <tab>
-      <tab-heading>Personal Info</tab-heading>
-    </tab>
-  </tabset>
-<!--   <md-tabs md-stretch-tabs="always" class="md" md-selected="tabData.signupTabIndex">
-    <md-tab id="signupTab1" aria-controls="signupTab1-content">
-      Basic
-    </md-tab>
-    <md-tab id="signupTab2" aria-controls="signupTab2-content">
-      Skills
-    </md-tab>
-    <md-tab id="signupTab3" aria-controls="signupTab3-content">
-      Personal Info
-    </md-tab>
-  </md-tabs>
-
-  <ng-switch on="tabData.signupTabIndex" class="tabpanel-container">
-    <form name="signupForm" class="auth-form" ng-submit="signup()">
-      <div role="tabpanel" id="signupTab1-content" aria-labelledby="signupTab1" ng-switch-when="0" md-swipe-left="nextTab('inner')" md-swipe-right="previousTab('inner')">
-
-        <md-input-container>
+      <md-input-container>
           <label>Name</label>
           <input type="text" name="name" pattern=".{3,}" ng-model="userData.name" required/>
           <br/>
@@ -60,15 +32,10 @@
         <div class="md-padding" style="margin-top: 5%;">
           <md-button ng-click="nextTab('inner')" class="md-raised md-primary">Next <i class="fa fa-chevron-right"></i></md-button>
         </div>
-
-      </div>
-
-      <div role="tabpanel" id="signupTab2-content" aria-labelledby="signupTab2" ng-switch-when="1" md-swipe-left="nextTab('inner')" md-swipe-right="previousTab('inner')">
-        <div layout="row" layout-wrap>
-          <md-checkbox ng-repeat="skill in defaultSkills" class="checkbox-button" ng-model="skillData[skill]" aria-label="skills">
-            <label>{{ skill | uppercase }}</label>
-          </md-checkbox>
-        </div>
+    </tab>
+    
+    <tab>
+      <tab-heading>Skills</tab-heading>
         <div layout="row" layout-block>
           <md-input-container style="width: 100%;">
             <label>Add New Skill</label>
@@ -81,16 +48,22 @@
             </div>
           </md-input-container>
           <a ng-click="addSkill()" class="md-primary">
-            <i class="fa fa-plus fa-2x" style="color:beige;"></i>
+            <i class="fa fa-plus fa-3x" style="color:green;"></i>
           </a>
+        </div>
+        <div layout="row" layout-wrap>
+          <md-checkbox ng-repeat="skill in defaultSkills" class="checkbox-button" ng-model="skillData[skill]" aria-label="skills">
+            <label>{{ skill | uppercase }}</label>
+          </md-checkbox>
         </div>
         <div class="center md-padding" style="margin-top: 5%;">
           <md-button ng-click="nextTab('inner')" class="md-raised md-primary">Next<i class="fa fa-chevron-right"></i></md-button>
         </div>
-      </div>
+    </tab>
 
-      <div role="tabpanel" id="signupTab3-content" aria-labelledby="signupTab3" ng-switch-when="2" md-swipe-left="nextTab('inner')" md-swipe-right="previousTab('inner')">
-        <md-input-container>
+    <tab>
+      <tab-heading>Personal Info</tab-heading>
+      <md-input-container>
           <label>Bio</label>
           <input type="textfield" name="bio" />
         </md-input-container>
@@ -101,15 +74,15 @@
         <div class="md-padding" style="margin-top: 5%;">
           <md-button type="submit" class="md-raised md-primary">Sign-up</md-button>
         </div>
-      </div>
-    </form>
-  </ng-switch> -->
+    </tab>
+  </tabset>
 </div>
 
 
 <style>
   .signup-form-partial{
     width: 50%;
+    min-width: 220px;
     display: block;
     margin-right: auto;
     margin-left: auto;

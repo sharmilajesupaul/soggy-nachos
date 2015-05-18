@@ -1,32 +1,87 @@
 <div class="login-form-partial">
   <form ng-submit="login()" name="loginForm" class="auth-form">
     <div class="form-group">
-      <label>Email</label>
-      <input type="email" name="email" ng-model="loginData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required/>
-      <div ng-messages="loginForm.email.$error">
-        <div ng-message="required">This is required.</div>
-        <div ng-message="pattern">Please enter a valid email.</div>
-      </div>
+      <span class="input input-break">
+        <input type="email" name="email" ng-model="loginData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required class="input__field input__field-break" id="input-7" />
+        <label class="input__label input__label-break" for="input-7">
+          <span class="input__label-content input__label-content-break">Email</span>
+        </label>
+        <div ng-messages="loginForm.email.$error" class="error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="pattern">Please enter a valid email.</div>
+        </div>
+      </span>
     </div>
 
     <div class="form-group">
-      <label>Password</label>
-      <input type='password' name="password" ng-model="loginData.password" pattern=".{6,}" required>
-      <div ng-messages="loginForm.password.$error">
-        <div ng-message="required">This is required.</div>
-        <div ng-message="pattern">Password too short.</div>
-      </div>
+      <span class="input input-break">
+        <input class="input__field input__field-break" type='password' name="password" ng-model="loginData.password" pattern=".{6,}" required>
+        <label class="input__label input__label-break" for="input-8">
+          <span class="input__label-content input__label-content-break">Password</span>
+        </label>
+        <div ng-messages="loginForm.password.$error" class="error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="pattern">Password too short.</div>
+        </div>
+      </span>
     </div>
     <div style="margin-top: 5%;">
-      <button type="submit" class="btn btn-block">Login</button>
+      <button type="submit" class="login-button btn">Login</button>
     </div>
   </form>
 </div>
 <style>
   .login-form-partial{
-    width: 30%;
+    width: 50%;
     display: block;
     margin-right: auto;
     margin-left: auto;
   }
+
+  .login-button {
+    display: block;
+    width: 50%;
+    min-width: 220px;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: auto;
+    background: rgb(143, 228, 168);
+  }
+
 </style>
+<script>
+      (function() {
+        // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+        if (!String.prototype.trim) {
+          (function() {
+            // Make sure we trim BOM and NBSP
+            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+            String.prototype.trim = function() {
+              return this.replace(rtrim, '');
+            };
+          })();
+        }
+
+        [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+          // in case the input is already filled..
+          if( inputEl.value.trim() !== '' ) {
+            classie.add( inputEl.parentNode, 'input--filled' );
+          }
+
+          // events:
+          inputEl.addEventListener( 'focus', onInputFocus );
+          inputEl.addEventListener( 'blur', onInputBlur );
+        } );
+
+        function onInputFocus( ev ) {
+          classie.add( ev.target.parentNode, 'input--filled' );
+        }
+
+        function onInputBlur( ev ) {
+          if( ev.target.value.trim() === '' ) {
+            classie.remove( ev.target.parentNode, 'input--filled' );
+          }
+        }
+      })();
+    </script>
