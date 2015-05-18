@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 8080;
+var environment = process.env.NODE_ENV || 'development';
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -20,7 +21,11 @@ var fs = require('fs');
 var db = require('./config/db');
 
 // connect to our mongoDB database
-mongoose.connect(db.url);
+if (environment === 'production') {
+  mongoose.connect(db.production.mongo);
+} else {
+  mongoose.connect(db.development.mongo);
+}
 
 // Allow cross-origin resource sharing
 app.use(cors());

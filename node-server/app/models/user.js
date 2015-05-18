@@ -2,7 +2,10 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = mongoose.Schema({
-  email: String,
+  email: {
+    type: String,
+    unique: true
+  },
   password: String,
   name: String,
   created: Date,
@@ -22,6 +25,10 @@ var userSchema = mongoose.Schema({
   requestsSent: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Request'
+  }],
+  pendingRequestUsers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }],
   projects: [{
     type: mongoose.Schema.Types.ObjectId,

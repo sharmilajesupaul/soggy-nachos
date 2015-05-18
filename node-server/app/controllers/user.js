@@ -5,25 +5,33 @@ var ff = require('ff');
 
 module.exports = function(app) {
 
-  app.get('/users', function(req, res) {
+  app.get('/users/:userId', function(req, res) {
     var f = ff(function() {
-        User.findOne({
-          _id: req.body.user
-        }).exec(f.slot());
-      }, function(user) {
-        if (!user) {
-          return res.status(400).send({});
+      User.findOne({
+        _id: req.params.userId
+      }).exec(f.slot());
+    }, function(user) {
+      if (!user) {
+        return res.status(400).send({});
+      }
+      var alreadyConnected = user.collaborators.concat(user.pendingRequestUsers);
+      User.find({
+        _id: {
+          $ne: user._id,
+          $nin: alreadyConnected
         }
-        User.find({
-          _id: {
-            $ne: user._id,
-            $nin: user.collaborations
-          }
-        }).exec(f.slot());
-      },
-      function(users) {
-        return res.send(users);
-      });
+      }).exec(f.slot());
+    }, function(users) {
+      if (!users) {
+        res.send({});
+      } else {
+        res.send(users);
+      }
+    }).onError(function(err) {
+      console.log(err.stack);
+    }).onSuccess(function() {
+      console.log('success');
+    });
   });
 
   app.delete('/users/:userId', function(req, res) {
