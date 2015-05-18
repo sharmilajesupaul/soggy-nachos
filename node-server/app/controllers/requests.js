@@ -60,58 +60,58 @@ module.exports = function(app) {
     });
   });
 
-  app.delete('/requests', function(req, res) {
+  app.delete('/requests/:requestId', function(req, res) {
     var recipient;
     var sender;
     var request;
 
     var f = ff(function() {
-      User.findOne({
-        _id: req.body.recipientId
-      }).exec(f.slot());
-    }, function(user) {
-      if (!user) {
-        return res.status(400).send('no user found');
-      }
-      recipient = user;
-      User.findOne({
-        _id: req.body.senderId
-      }).exec(f.slot());
-    }, function(user) {
-      if (!user) {
-        return res.status(400).send('no user found');
-      }
-      sender = user;
-      Request.findOne({
-        requestSender: sender._id,
-        requestRecipient: recipient._id,
-        resolved: {
-          $ne: true
+        Request.findOne({
+          _id: req.params.requestId,
+          resolved: {
+            $ne: true
+          }
+        }).exec(f.slot());
+      }, function(doc) {
+        if (!doc) {
+          console.log('no request found');
+          return res.status(400);
         }
-      }).exec(f.slot());
-    }, function(doc) {
-      if (!doc) {
-        return res.status(400).send('no request found');
-      }
-      request = doc;
-    }, function() {
+        request = doc;
+      }, function() {
+        User.findOne({
+          _id: request.requestRecipient
+        }).exec(f.slot());
+      }, function(user) {
+        if (!user) {
+          console.log('no user found');
+          return res.status(400);
+        }
+        recipient = user;
+        User.findOne({
+          _id: request.requestSender
+        }).exec(f.slot());
+      }, function(user) {
+        if (!user) {
+          console.log('no user found');
+          return res.status(400);
+        }
+        sender = user;
+      },
+      function() {
 
-      var senderRequestIndex = sender.requestsSent.indexOf(request._id);
-      var recipientRequestIndex = recipient.requests.indexOf(request._id);
-      sender.requestsSent.splice(senderRequestIndex, 1);
-      recipient.requests.splice(recipientRequestIndex, 1);
+        sender.requestsSent.pull(request._id);
+        recipient.requests.pull(request._id);
 
-      var senderPendingIndex = sender.pendingRequestUsers.indexOf(recipient._id);
-      var recipientPendingIndex = recipient.pendingRequestUsers.indexOf(sender._id);
-      sender.requestsSent.splice(senderPendingIndex, 1);
-      recipient.requests.splice(recipientPendingIndex, 1);
+        sender.pendingRequestUsers.pull(recipient._id);
+        recipient.pendingRequestUsers.pull(sender._id);
 
-      request.resolved = true;
+        request.resolved = true;
 
-      sender.save(f.wait());
-      recipient.save(f.wait());
-      request.save(f.wait());
-    }).onError(function(err) {
+        sender.save(f.wait());
+        recipient.save(f.wait());
+        request.save(f.wait());
+      }).onError(function(err) {
       console.log(err.stack);
     }).onSuccess(function() {
       console.log('completed');

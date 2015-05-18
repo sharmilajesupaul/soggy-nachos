@@ -23,11 +23,8 @@ angular.module('dashFactory', [])
         senderId: sender_id
       });
     },
-    declineCollaboration: function(user_id, sender_id) {
-      return $http.delete('http://localhost:8080/collaborators', {
-        recipientId: user_id,
-        senderId: sender_id
-      });
+    declineCollaboration: function(request_id) {
+      return $http.delete('http://localhost:8080/requests/' + request_id);
     }
   };
 }])

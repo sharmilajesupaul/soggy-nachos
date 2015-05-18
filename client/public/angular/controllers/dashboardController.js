@@ -55,7 +55,7 @@ angular.module('dashController', [])
   };
 
   $scope.declineCollaboration = function(request) {
-    collaborators.declineCollaboration($scope.currentUserId, request.requestSender)
+    collaborators.declineCollaboration(request._id)
       .success(function(data) {
         $scope.removeRequest(request);
       })
