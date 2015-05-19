@@ -1,6 +1,13 @@
 {
   "name": "soggy-nachos-server",
   "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sharmilajesupaul/soggy-nachos"
+  },
   "dependencies": {
     "async": "~0.2.9",
     "bcrypt-nodejs": "latest",
@@ -13,6 +20,7 @@
     "express-session": "^1.11.1",
     "ff": "~0.2.0",
     "fs": "*",
+    "geocoder": "*",
     "jwt-simple": "*",
     "method-override": "~2.0.2",
     "morgan": "~1.0.0",

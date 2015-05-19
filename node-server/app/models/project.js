@@ -15,6 +15,7 @@ var projectSchema = mongoose.Schema({
     ref: 'User',
     unique: true
   }],
+  skillsDesired: Array,
   activeProject: Boolean,
   helpWanted: Boolean,
   technologies: Array,

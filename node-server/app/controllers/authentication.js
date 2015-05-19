@@ -37,7 +37,6 @@ module.exports = function(app) {
       if (user) {
         return res.send(400, 'email already registered');
       }
-      // console.log(newUser.generateHash(req.body.user.password));
       user = new User(newUser);
       user.password = user.generateHash(newUser.password);
       user.save();

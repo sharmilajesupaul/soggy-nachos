@@ -14,7 +14,6 @@ var methodOverride = require('method-override');
 var cors = require('cors');
 var fs = require('fs');
 
-
 // configuration ===========================================
 
 // config files
@@ -56,7 +55,9 @@ app.use(passport.session());
 
 // models ==================================================
 fs.readdirSync(__dirname + '/app/models').forEach(function(filename) {
-  if (~filename.indexOf('.js')) require(__dirname + '/app/models/' + filename);
+  if (~filename.indexOf('.js')) {
+    require(__dirname + '/app/models/' + filename);
+  }
 });
 
 // routes ==================================================
