@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+var ff = require('ff');
+var geocoder = require('geocoder');
 
 var userSchema = mongoose.Schema({
   email: {
@@ -12,6 +14,10 @@ var userSchema = mongoose.Schema({
   updated: Date,
   skills: Array,
   location: String, // formatted like: "San Francisco, CA" -- will be using this to calculate geolocation to find nearby matches
+  geo: {
+    formattedAddress: String,
+    lonlat: Array
+  },
   bio: String,
   remote: Boolean,
   profilePicture: String,
@@ -66,12 +72,30 @@ userSchema.methods.validPassword = function(password) {
 
 // pre-save hook ================
 userSchema.pre('save', function(next) {
-  now = new Date();
-  this.updated = now;
-  if (!this.created) {
-    this.created = now;
-  }
-  next();
+  var f = ff(function() {
+    now = new Date();
+    this.updated = now;
+    if (!this.created) {
+      this.created = now;
+    }
+    if (this.location) {
+      geocoder.geocode(this.location, f.slot());
+    }
+  }, function(data) {
+    if (data) {
+      var formattedAddress = data.results[0].formatted_address;
+      var lon = data.results[0].geometry.location.lng;
+      var lat = data.results[0].geometry.location.lat;
+      var lonlat = [lon, lat];
+      this.geo.lonlat = lonlat;
+      this.geo.formattedAddress = formattedAddress;
+    }
+  }).onComplete(function(err) {
+    if (err) {
+      console.log(err.stack);
+    }
+    next();
+  });
 });
 
 module.exports = mongoose.model('User', userSchema);
