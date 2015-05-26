@@ -1,4 +1,4 @@
-#loginCtrl {
+loginCtrl {
   /*height: 100%;*/
   color: rgba(170, 124, 124, 0.87);
 }
@@ -100,7 +100,8 @@ md-checkbox div.md-container {
 /* Checkbox label alignment */
 .checkbox-button {
   display: inline-block;
-  /*margin: 5% auto;*/
+  margin: 2px;
+  padding: 0;
 }
 
 /* default styling for labels */
@@ -128,13 +129,13 @@ md-checkbox div.md-container {
 /* animation for the time slot to flash red */
 @keyframes flashBooked {
   0%, 100%  { background:#f2dede; transform:scale(1); }
-  50%       { background:#F99090; transform:scale(1.5); }
+  50%       { background:#F99090; transform:scale(1.2); }
 }
 
 /* animation for the time slot to flash green */
 @keyframes flashAvailable {
-  0%, 100%  { background:#6AB074; transform:scale(1); }
-  50%       { background:rgb(119, 218, 78); transform:scale(1.5); }
+  0%, 100%  { background:#6AB074; transform:scale(1);}
+  50%       { background:rgb(119, 218, 78); transform:scale(1.2);}
 }
 
 .face {

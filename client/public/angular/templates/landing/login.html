@@ -1,7 +1,7 @@
 <div class="login-form-partial">
   <form ng-submit="login()" name="loginForm" class="auth-form">
     <div class="form-group">
-      <span class="input input-break">
+      <span class="input input-break" ng-class="{'input--filled': loginForm.email.$dirty}">
         <input type="email" name="email" ng-model="loginData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required class="input__field input__field-break" id="input-7" />
         <label class="input__label input__label-break" for="input-7">
           <span class="input__label-content input__label-content-break">Email</span>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-group">
-      <span class="input input-break">
+      <span class="input input-break" ng-class="{'input--filled': loginForm.password.$dirty}">
         <input class="input__field input__field-break" type='password' name="password" ng-model="loginData.password" pattern=".{6,}" id="input-8" required>
         <label class="input__label input__label-break" for="input-8">
           <span class="input__label-content input__label-content-break">Password</span>
@@ -32,7 +32,6 @@
 </div>
 <style>
   .login-form-partial{
-    width: 50%;
     display: block;
     margin-right: auto;
     margin-left: auto;
@@ -52,40 +51,4 @@
   .login-button:hover{
     background: rgb(90, 217, 128);
   }
-
 </style>
-<script>
-      (function() {
-        // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
-        if (!String.prototype.trim) {
-          (function() {
-            // Make sure we trim BOM and NBSP
-            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-            String.prototype.trim = function() {
-              return this.replace(rtrim, '');
-            };
-          })();
-        }
-
-        [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
-          // in case the input is already filled..
-          if( inputEl.value.trim() !== '' ) {
-            classie.add( inputEl.parentNode, 'input--filled' );
-          }
-
-          // events:
-          inputEl.addEventListener( 'focus', onInputFocus );
-          inputEl.addEventListener( 'blur', onInputBlur );
-        } );
-
-        function onInputFocus( ev ) {
-          classie.add( ev.target.parentNode, 'input--filled' );
-        }
-
-        function onInputBlur( ev ) {
-          if( ev.target.value.trim() === '' ) {
-            classie.remove( ev.target.parentNode, 'input--filled' );
-          }
-        }
-      })();
-    </script>
