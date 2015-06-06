@@ -1,0 +1,10 @@
+<span class="input input-break">
+  <input class="input__field input__field-break" type='{{ label }}' name="{{ label }}" ng-model="{{ ngModel }}" pattern="{{ pattern }}" id="input-8" required>
+  <label class="input__label input__label-break" for="input-8">
+    <span class="input__label-content input__label-content-break">{{ label }}</span>
+  </label>
+  <div ng-messages="{{ formError }}" class="error">
+    <div ng-message="required">This is required.</div>
+    <div ng-message="pattern">{{ label }} invalid.</div>
+  </div>
+</span>

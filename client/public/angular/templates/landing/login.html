@@ -1,0 +1,54 @@
+<div class="login-form-partial">
+  <form ng-submit="login()" name="loginForm" class="auth-form">
+    <div class="form-group">
+      <span class="input input-break" ng-class="{'input--filled': loginForm.email.$dirty}">
+        <input type="email" name="email" ng-model="loginData.email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required class="input__field input__field-break" id="input-7" />
+        <label class="input__label input__label-break" for="input-7">
+          <span class="input__label-content input__label-content-break">Email</span>
+        </label>
+        <div ng-messages="loginForm.email.$error" class="error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="pattern">Please enter a valid email.</div>
+        </div>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="input input-break" ng-class="{'input--filled': loginForm.password.$dirty}">
+        <input class="input__field input__field-break" type='password' name="password" ng-model="loginData.password" pattern=".{6,}" id="input-8" required>
+        <label class="input__label input__label-break" for="input-8">
+          <span class="input__label-content input__label-content-break">Password</span>
+        </label>
+        <div ng-messages="loginForm.password.$error" class="error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="pattern">Password too short.</div>
+        </div>
+      </span>
+    </div>
+    <div style="margin-top: 5%;">
+      <button type="submit" class="login-button btn">Login</button>
+    </div>
+  </form>
+</div>
+<style>
+  .login-form-partial{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .login-button {
+    display: block;
+    width: 50%;
+    min-width: 220px;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: auto;
+    background: rgb(143, 228, 168);
+  }
+
+  .login-button:hover{
+    background: rgb(90, 217, 128);
+  }
+</style>
