@@ -72,14 +72,15 @@ userSchema.methods.validPassword = function(password) {
 
 // pre-save hook ================
 userSchema.pre('save', function(next) {
+  var user = this;
   var f = ff(function() {
     now = new Date();
-    this.updated = now;
-    if (!this.created) {
-      this.created = now;
+    user.updated = now;
+    if (!user.created) {
+      user.created = now;
     }
-    if (this.location) {
-      geocoder.geocode(this.location, f.slot());
+    if (user.location) {
+      geocoder.geocode(user.location, f.slot());
     }
   }, function(data) {
     if (data) {
@@ -87,8 +88,8 @@ userSchema.pre('save', function(next) {
       var lon = data.results[0].geometry.location.lng;
       var lat = data.results[0].geometry.location.lat;
       var lonlat = [lon, lat];
-      this.geo.lonlat = lonlat;
-      this.geo.formattedAddress = formattedAddress;
+      user.geo.lonlat = lonlat;
+      user.geo.formattedAddress = formattedAddress;
     }
   }).onComplete(function(err) {
     if (err) {
