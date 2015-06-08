@@ -45,6 +45,8 @@ angular.module('authController', [])
     };
 
     $scope.signup = function() {
+      console.log($scope.userData);
+      console.log($scope.skillData);
       $scope.profileData = {
         user: $scope.userData,
         skills: Object.keys($scope.skillData)
@@ -88,6 +90,14 @@ angular.module('authController', [])
       selectedIndex: 0,
       signupTabIndex: 0
     };
+
+
+    $scope.signupTabs = {
+      basic: { active: true }, 
+      skills: { active: false },
+      personalInfo: { active: false }
+    }
+
 
     $scope.nextTab = function(name) {
       if (name === "inner") {

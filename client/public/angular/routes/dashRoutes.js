@@ -16,6 +16,6 @@ angular.module('dashRoutes', [])
     });
 
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/landing/default');
 
   }]);
