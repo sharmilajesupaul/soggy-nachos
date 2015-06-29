@@ -1,4 +1,4 @@
-angular.module('soggyNachos', ['firebase',
+angular.module('soggyNachos', [
   'ui.router',
   'ui.bootstrap',
   'ngStorage',
