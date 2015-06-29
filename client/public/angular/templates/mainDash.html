@@ -43,7 +43,7 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li ng-class="dropdown.mail" id="dropdown-mail">
-                    <a href="#" class="dropdown-toggle"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" ng-click="toggleDropdown('mail')"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
                         <li class="message-preview">
                             <a href="#">
@@ -96,7 +96,7 @@
                     </ul>
                 </li>
                 <li ng-class="dropdown.alert" id="dropdown-alert">
-                    <a href="#" class="dropdown-toggle" ng-click="toggleDropdown('dropdown-alert')"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" ng-click="toggleDropdown('alert')"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
                             <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
@@ -123,7 +123,7 @@
                     </ul>
                 </li>
                 <li ng-class="dropdown.user" id="dropdown-user">
-                    <a href="#" class="dropdown-toggle"><i class="fa fa-user"></i> {{ currentUser.name }} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" ng-click="toggleDropdown('user')"><i class="fa fa-user"></i> {{ currentUser.name }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -185,28 +185,8 @@
         </nav>
 
         <div id="page-wrapper">
-
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Dashboard <small>Statistics Overview</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <!-- DASH ELEMENTS HERE -->
-
-
-            </div>
+            <!-- Dash Feed Views -->
+            <div class="container-fluid dashfeed-view" ui-view></div>
             <!-- /.container-fluid -->
 
         </div>
@@ -214,3 +194,4 @@
 
     </div>
     <!-- /#wrapper -->
+<script src="/js/bootstrap.js" defer></script>

@@ -4,7 +4,7 @@ loginCtrl {
 }
 
 /*Bootstrap keeps overwriting this*/
-.nav>li>a:focus, .nav>li>a:hover {
+.nav .open>a, .nav>li>a:focus, .nav>li>a:hover {
   background-color: black !important;
 }
 /*-----------------------------*/
@@ -154,6 +154,9 @@ md-checkbox div.md-container {
   float: right;
 }
 
+.dashfeed-view {
+  margin-top: 10em;
+}
 
 
 /* SB ADMIN */
@@ -200,6 +203,8 @@ body {
         padding: 10px;
     }
 }
+
+
 
 /* Top Navigation */
 
