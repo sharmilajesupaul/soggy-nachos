@@ -9,6 +9,14 @@ angular.module('dashController', [])
       user: 'dropdown'
     };
 
+    $scope.toggleDropdown = function (tag) {
+      if($scope.dropdown[tag] === 'dropdown'){
+        $scope.dropdown[tag] = 'dropdown open';
+      } else{
+        $scope.dropdown[tag] = 'dropdown'
+      }
+    };
+
     $scope.logout = function() {
       authFactory.logout();
     };
@@ -21,7 +29,7 @@ angular.module('dashController', [])
 
 .controller('FeedCtrl', ['$scope', '$localStorage', '$http', 'collaborators', 'userData', function($scope, $localStorage, $http, collaborators, userData) {
   $scope.currentUser = $localStorage.user;
-  
+  $scope.currentUserId = $localStorage.user._id;
 
   $scope.sendCollaborationRequest = function(requestedUser) {
     collaborators.sendRequest($scope.currentUserId, requestedUser._id)
