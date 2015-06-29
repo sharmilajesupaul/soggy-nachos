@@ -1,7 +1,12 @@
 angular.module('dashController', [])
   .controller('DashCtrl', ['$scope', '$timeout', '$mdSidenav', '$log', 'authFactory', '$localStorage', function($scope, $timeout, $mdSidenav, $log, authFactory, $localStorage) {
-    $scope.toggleSidenav = function(menuId) {
-      $mdSidenav(menuId).toggle();
+    $scope.currentUser = $localStorage.user;
+
+    // Dropdown Controls
+    $scope.dropdown = {
+      mail: 'dropdown',
+      alert: 'dropdown',
+      user: 'dropdown'
     };
 
     $scope.logout = function() {
@@ -15,8 +20,8 @@ angular.module('dashController', [])
   }])
 
 .controller('FeedCtrl', ['$scope', '$localStorage', '$http', 'collaborators', 'userData', function($scope, $localStorage, $http, collaborators, userData) {
-
-  $scope.currentUserId = $localStorage.user._id;
+  $scope.currentUser = $localStorage.user;
+  
 
   $scope.sendCollaborationRequest = function(requestedUser) {
     collaborators.sendRequest($scope.currentUserId, requestedUser._id)
@@ -79,11 +84,13 @@ angular.module('dashController', [])
       console.log('success');
       var userData = data;
       $scope.users = [];
+
       userData.forEach(function(user) {
-        if (user._id != $scope.currentUserId) {
+        if (user._id != $scope.currentUser._id) {
           $scope.users.push(user);
         }
       });
+      console.log('current', $scope.currentUser);
     })
     .error(function(data, status) {
       console.log('failure');
