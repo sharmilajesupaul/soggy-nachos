@@ -1,4 +1,4 @@
-angular.module('soggyNachos', ['firebase',
+angular.module('soggyNachos', [
   'ui.router',
   'ui.bootstrap',
   'ngStorage',
@@ -7,7 +7,8 @@ angular.module('soggyNachos', ['firebase',
   'ngMessages',
   'ngMdIcons',
   'dashController',
-  'themeConfig',
+  // Fuck you. Theme Config. Fuck You.
+  // 'themeConfig',
   'userFactory',
   'dashFactory',
   'userRoutes',
